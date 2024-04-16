@@ -7,15 +7,18 @@
       <!-- <i :class="'el-icon-' + data.icon"></i> -->
       <!-- <i-ep-add-location /> -->
       <el-icon :size="20">
-        <Location/>
+<!--        <Location/>-->
+<!--        <i-ep-add-location />-->
+        <Icon :icon="`mdi:${data.icon}`" />
       </el-icon>
       <span>{{ data.title }}</span>
     </template>
-    <menu-item v-for="child in data.children" className="unis-sub-menu__item" :data="child"></menu-item>
+    <menu-item v-for="child in data.children" :active-menu="activeMenu" :collapse="collapse"  className="unis-sub-menu__item" :data="child"></menu-item>
   </el-sub-menu>
   <el-menu-item :class="className" v-else :index="data.path">
     <el-icon :size="20">
-      <Location/>
+<!--      <i-ep-apple></i-ep-apple>-->
+      <Icon :icon="`mdi:${data.icon}`" />
     </el-icon>
     <span>{{ data.title }}</span>
   </el-menu-item>
@@ -25,9 +28,10 @@
 import {MenuItem as MenuItemType} from "./types"
 import Minus from "./minus.vue"
 import Plus from "./plus.vue"
-import {
-  Location,
-} from '@element-plus/icons-vue'
+import { Icon } from '@iconify/vue';
+// import {
+//   Location,
+// } from '@element-plus/icons-vue'
 
 defineProps<{
   data: MenuItemType;

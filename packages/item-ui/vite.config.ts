@@ -7,7 +7,7 @@ import Components from 'unplugin-vue-components/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 import Icons from 'unplugin-icons/vite';
 import IconsResolver from 'unplugin-icons/resolver';
-
+// https://juejin.cn/post/7044104405825617928 Icons Webpack Plugin
 const pathSrc = path.resolve(__dirname, 'src');
 
 // https://vitejs.dev/config/

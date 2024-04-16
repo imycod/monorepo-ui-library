@@ -4,7 +4,8 @@
     <el-menu v-if="!moreSysOpen" id="unis-menu--container" class="unis-item_menu h-full" @select="select" router
              :default-active="defaultActive"
              :collapse="isCollapsed" @open="handleOpen"
-             @close="handleClose">
+             @close="handleClose"
+             unique-opened>
       <div :class="!isCollapsed ? 'flex justify-between' : ''">
         <a class="flex mb-4 items-center w-[150px] h-[56px]" href="/">
           <div v-if="!isCollapsed" style="margin-left: 1.5rem;">
@@ -29,8 +30,10 @@
             </a>
         </span>
       </div>
-      <menu-item v-for="menu in data" :data="menu" :activeMenu="activeMenu" :collapse="isCollapsed"
-                 className="unis-menu_item"></menu-item>
+      <div class="body--container">
+        <menu-item v-for="menu in data" :data="menu" :activeMenu="activeMenu" :collapse="isCollapsed"
+                   className="unis-menu_item"></menu-item>
+      </div>
     </el-menu>
     <!-- 3.子系统入口 -->
     <div v-if="moreSysOpen" class="more-sys bg-[var(--Seller-Item-Black-300,_#21232B)] h-full z-10"
@@ -211,6 +214,8 @@ onUnmounted(() => {
 //}
 
 #unis-menu-panel--container {
+  overflow: hidden;
+
   .icon-wrapper {
     width: 32px;
     height: 32px;
@@ -316,6 +321,14 @@ onUnmounted(() => {
   //  text-overflow: ellipsis;
   //  white-space: nowrap;
   //}
+
+  .body--container{
+    overflow-y: scroll;
+    height: 90%;
+    &::-webkit-scrollbar {
+      width: 1px;
+    }
+  }
 
   padding: 32px 0px;
 

@@ -5,60 +5,154 @@ import {useRouter} from "vue-router";
 import {ItemMenu} from "@unisc-ui/item";
 import "@unisc-ui/item/dist/style.css";
 
+const dir = 'unis'
 const menuList = [
   {
-    index: '0',
-    title: "首页",
-    icon: "home",
-    path: "/",
+    index:'1',
+    title: 'Dashboard',
+    path: `/${dir}/dashboard`,
+    icon: 'dashboard',
   },
   {
-    index: '1',
-    title: "关于",
-    icon: "about",
-    path: "/about",
+    index:'2',
+    title: 'Channels',
+    path: `/${dir}/channels`,
+    icon: 'storefront',
   },
   {
-    index: '2',
-    title: "测试",
-    icon: "about",
-    path: "/test",
+    index:'3',
+    title: 'Orders',
+    path: `/${dir}/orders`,
+    icon: 'shopping_bag',
+  },
+  {
+    index:'4',
+    title: 'Mapping',
+    path: `/${dir}/mapping`,
+    icon: 'dataset',
+  },
+  {
+    index:'5',
+    title: 'Products',
+    path: `/${dir}/products`,
+    icon: 'discount',
+  },
+  {
+    index:'6',
+    title: 'Shipments',
+    icon: 'vertical_shades',
+    path: `/${dir}/shipments`,
     children: [
       {
-        index: '2-1',
-        title: "测试1",
-        icon: "test",
-        path: "/test/test1",
-        // children: [
-        //   {
-        //     index: '2-1-1',
-        //     title: "测试12",
-        //     icon: "test",
-        //     path: "/test/test2",
-        //   },
-        //   {
-        //     index: '2-1-2',
-        //     title: "测试13",
-        //     icon: "test",
-        //     path: "/test/test3",
-        //   }
-        // ]
+        index:'6-1',
+        title: 'Fulfillments',
+        path: `/${dir}/shipments/fulfillments`,
       },
       {
-        index: '2-2',
-        title: "测试2",
-        icon: "test",
-        path: "/test/test2",
-      }
-    ]
+        index:'6-2',
+        title: 'End of Day',
+        path: `/${dir}/shipments/end-of-day`,
+      },
+      {
+        index:'6-3',
+        title: 'Batches',
+        path: `/${dir}/shipments/batches`,
+      },
+    ],
   },
   {
-    index: '3',
-    title: "设置",
-    icon: "setting",
-    path: "/setting",
+    index:'7',
+    title: 'Transaction',
+    icon: 'multiple_stop',
+    path: `/${dir}/transaction`,
+    children: [
+      {
+        index:'7-1',
+        title: 'Label History',
+        path: `/${dir}/transaction/label-history`,
+      },
+      {
+        index:'7-2',
+        title: 'Payment History',
+        path: `/${dir}/transaction/payment-history`,
+      },
+      {
+        index:'7-3',
+        title: 'Statement',
+        path: `/${dir}/transaction/statement`,
+      },
+    ],
   },
-]
+  {
+    index:'8',
+    title: 'User',
+    icon: 'supervisor_account',
+    path: `/${dir}/user`,
+    children: [
+      {
+        index:'8-1',
+        title: 'User',
+        path: `/${dir}/user/user`,
+      },
+      {
+        index:'8-2',
+        title: 'Role Management',
+        path: `/${dir}/user/role-management`,
+      },
+      {
+        index:'8-3',
+        title: 'Role Permissions',
+        path: `/${dir}/user/role-permissions`,
+      },
+    ],
+  },
+  {
+    index:'9',
+    title: 'Settings',
+    icon: 'settings',
+    path: `/${dir}/settings`,
+    children: [
+      {
+        index:'9-1',
+        title: 'Carriers',
+        path: `/${dir}/settings/carriers`,
+        permissions: 'item_ship::web::settings::carrier::carrier_read',
+      },
+      {
+        index:'9-2',
+        title: 'Address Validation',
+        path: `/${dir}/settings/address-validation`,
+      },
+      {
+        index:'9-3',
+        title: 'Sender Address',
+        path: `/${dir}/settings/sender-address`,
+      },
+      {
+        index:'9-4',
+        title: 'Packages',
+        path: `/${dir}/settings/packages`,
+      },
+      {
+        index:'9-5',
+        title: 'Printing',
+        path: `/${dir}/settings/printing`,
+      },
+      {
+        index:'9-6',
+        // for LITE-3232
+        title: 'Billing Information',
+        path: `/${dir}/settings/billing-information`,
+      },
+    ],
+  },
+  {
+    index:'10',
+    title: 'Ticket Support',
+    path: `/${dir}/ticketsupport`,
+    icon: 'support',
+  },
+];
 
 const applications = [
   {
