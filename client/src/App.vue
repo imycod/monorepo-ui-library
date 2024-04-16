@@ -29,20 +29,20 @@ const menuList = [
         title: "测试1",
         icon: "test",
         path: "/test/test1",
-        children: [
-          {
-            index: '2-1-1',
-            title: "测试12",
-            icon: "test",
-            path: "/test/test2",
-          },
-          {
-            index: '2-1-2',
-            title: "测试13",
-            icon: "test",
-            path: "/test/test3",
-          }
-        ]
+        // children: [
+        //   {
+        //     index: '2-1-1',
+        //     title: "测试12",
+        //     icon: "test",
+        //     path: "/test/test2",
+        //   },
+        //   {
+        //     index: '2-1-2',
+        //     title: "测试13",
+        //     icon: "test",
+        //     path: "/test/test3",
+        //   }
+        // ]
       },
       {
         index: '2-2',
@@ -51,6 +51,12 @@ const menuList = [
         path: "/test/test2",
       }
     ]
+  },
+  {
+    index: '3',
+    title: "设置",
+    icon: "setting",
+    path: "/setting",
   },
 ]
 

@@ -1,5 +1,5 @@
 <template>
-  <el-sub-menu class="item-menu-sub-item" id="item-sub-menu"
+  <el-sub-menu class="unis-sub-menu_item" :class="collapse ? `is-collapse` :'' " id="unis-menu-sub--container"
                :expand-close-icon="Plus"
                :expand-open-icon="Minus"
                v-if="data.children" :index="data.path">
@@ -11,9 +11,9 @@
       </el-icon>
       <span>{{ data.title }}</span>
     </template>
-    <menu-item v-for="child in data.children" :data="child"></menu-item>
+    <menu-item v-for="child in data.children" className="unis-sub-menu__item" :data="child"></menu-item>
   </el-sub-menu>
-  <el-menu-item class="item-menu-item" v-else :index="data.path">
+  <el-menu-item :class="className" v-else :index="data.path">
     <el-icon :size="20">
       <Location/>
     </el-icon>
@@ -31,6 +31,9 @@ import {
 
 defineProps<{
   data: MenuItemType;
+  activeMenu: MenuItemType;
+  className: string;
+  collapse: boolean;
 }>()
 </script>
 
@@ -45,16 +48,16 @@ defineProps<{
 </style>
 
 <style lang="scss" scoped>
-.item-menu-item {
-  --el-menu-hover-text-color: #cabffd !important;
+.unis-menu_item {
+  --el-menu-hover-text-color: #c8a0ff !important;
 }
 
-.item-menu-sub-item {
-  --el-menu-hover-text-color: #cabffd !important;
+.unis-sub-menu_item {
+  --el-menu-hover-text-color: #bc8bf8 !important;
 }
 
-#item-sub-menu {
-  :deep(.el-icon svg) {
+#unis-menu-sub--container {
+  :deep(.el-sub-menu__icon-arrow svg) {
     width: 25px;
     height: 25px;
   }
@@ -66,6 +69,59 @@ defineProps<{
     //width: 16px;
     //height: 16px;
     //transform: none;
+  }
+}
+
+.unis-sub-menu_item.is-active {
+
+}
+
+.unis-sub-menu_item.is-active.is-opened {
+  :deep(.el-sub-menu__title) {
+    position: relative;
+    z-index: 2;
+
+    &::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      padding: 0 8px;
+      margin: 0 16px;
+      border-radius: 8px;
+      background-color: rgb(51, 56, 71);
+      top: 0;
+      left: 0;
+      width: 90%;
+      height: 100%;
+    }
+  }
+}
+
+.unis-sub-menu_item.is-active {
+  :deep(.unis-sub-menu__item.is-active) {
+    color: var(--el-menu-hover-text-color);
+  }
+}
+
+// collapse
+#unis-menu-sub--container.is-active.is-collapse {
+  :deep(.el-sub-menu__title) {
+    position: relative;
+    z-index: 2;
+
+    &::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      padding: 0;
+      margin: 4px 6px;
+      border-radius: 8px;
+      background-color: rgb(51, 56, 71);
+      top: 0;
+      left: 0;
+      width: 48px;
+      height: 48px;
+    }
   }
 }
 </style>
