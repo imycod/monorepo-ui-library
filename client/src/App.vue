@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { useRouter } from "vue-router"
+// @ts-nocheck
+import {useRouter} from "vue-router";
 
-import { ItemMenu } from "@unisc-ui/item";
-import "@unisc-ui/item/dist/style.css"
+import {ItemMenu} from "@unisc-ui/item";
+import "@unisc-ui/item/dist/style.css";
 
 const menuList = [
   {
@@ -58,26 +59,50 @@ const route = useRouter()
 function selectApplication(item) {
   console.log('selectApplication---', item);
 }
+
 function more(t) {
   console.log('more---', t);
 }
-function sizeChange({ isCollapse, isLessMinScreen }) {
-  console.log('sizeChange---', { isCollapse, isLessMinScreen });
+
+function sizeChange({isCollapse, isLessMinScreen}) {
+  console.log('sizeChange---', {isCollapse, isLessMinScreen});
 }
+
 function collapse(t) {
   console.log('collapse----', t);
 }
+
 function close(key, keyPath) {
   console.log('close----', key, keyPath);
 }
+
 function open(key, keyPath) {
   console.log('open----', key, keyPath);
 }
+
+
+import {useDark, useToggle} from '@vueuse/core'
+
+const isDark = useDark()
+const toggleDark = useToggle(isDark)
 </script>
 
 <template>
-  <ItemMenu :data="menuList" :default-active="route.path" @selectApplication="selectApplication" @more="more"
-    @sizeChange="sizeChange" @collapse="collapse" @open="open" @close="close"> </ItemMenu>
+  <el-config-provider namespace="ep">
+    <div class="flex">
+      <div style="width: 360px;height: 100vh;">
+        <ItemMenu style="height: 100%" :data="menuList" :default-active="route.path" @selectApplication="selectApplication" @more="more"
+                  @sizeChange="sizeChange" @collapse="collapse" @open="open" @close="close"></ItemMenu>
+      </div>
+      <div>
+        <el-button type="primary">aa</el-button>
+        <button class="rounded text-white bg-purple-500 px-5 py-2 hover:shadow-blue-100" @click="toggleDark()">mode {{
+            isDark
+          }}
+        </button>
+      </div>
+    </div>
+  </el-config-provider>
 </template>
 
 <style scoped></style>

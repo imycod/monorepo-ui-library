@@ -2,8 +2,8 @@
   "version": "0.0.0",
   "main": "index.js",
   "scripts": {
-    "client": "pnpm --filter client",
     "lib": "pnpm --filter @unisc-ui/item",
+    "client": "pnpm --filter client",
     "dev": "pnpm --recursive --parallel --stream run dev"
   },
   "dependencies": {},

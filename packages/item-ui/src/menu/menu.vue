@@ -1,11 +1,12 @@
 <template>
-    <button class="rounded-md bg-primary shadow-md text-white p-2 absolute top-2 right-2">测试</button>
-    <el-menu router width="360" :default-active="defaultActive" :collapse="isCollapsed" @open="handleOpen"
-        @close="handleClose">
-        <template v-for="menu in data">
-            <menu-item :data="menu"></menu-item>
-        </template>
+<!--  <el-config-provider namespace="ep">-->
+    <el-menu id="item-menu" class="item-menu" router :default-active="defaultActive" :collapse="isCollapsed" @open="handleOpen"
+             @close="handleClose">
+      <template v-for="menu in data">
+        <menu-item :data="menu"></menu-item>
+      </template>
     </el-menu>
+<!--  </el-config-provider>-->
 </template>
 
 <script setup lang="ts">
@@ -14,57 +15,57 @@ import MenuItem from "./menu-item.vue"
 import createMoreSystem from "./hooks/moreSystem"
 import createMenus from "./hooks/menus"
 import createMask from "./hooks/mask"
-import { MenuItem as MenuItemType } from "./types"
+import {MenuItem as MenuItemType} from "./types"
 
 const props = withDefaults(defineProps<{
-    collapse: boolean;
-    data: MenuItemType[];
-    defaultActive?: string;
-}>(), { collapse: false, data: [], defaultActive: '1' });
+  collapse: boolean;
+  data: MenuItemType[];
+  defaultActive?: string;
+}>(), {collapse: false, data: [], defaultActive: '1'});
 
 const emit = defineEmits(['selectApplication', 'more', 'sizeChange', 'collapse', 'open', 'close'])
-const { moreSysOpen, applicationLoading, changeMoreSysOpen } = createMoreSystem()
-const { isCollapsed, openedAccordion, toggleAccordion, toggleSlimMode } = createMenus(props)
-const { isLessMinScreen, removeCoverLayer } = createMask(isCollapsed)
+const {moreSysOpen, applicationLoading, changeMoreSysOpen} = createMoreSystem()
+const {isCollapsed, openedAccordion, toggleAccordion, toggleSlimMode} = createMenus(props)
+const {isLessMinScreen, removeCoverLayer} = createMask(isCollapsed)
 
 const more = (t: Boolean) => {
-    changeMoreSysOpen(t)
-    emit('more', t)
+  changeMoreSysOpen(t)
+  emit('more', t)
 }
 
 const handleOpen = (key: string, keyPath: string[]) => {
-    emit('open', key, keyPath);
+  emit('open', key, keyPath);
 }
 const handleClose = (key: string, keyPath: string[]) => {
-    emit('close', key, keyPath);
+  emit('close', key, keyPath);
 }
 
 const onToggleAccordion = (menuTitle) => {
-    toggleAccordion(menuTitle)
-    emit('collapse', isCollapsed.value)
+  toggleAccordion(menuTitle)
+  emit('collapse', isCollapsed.value)
 }
 const onToggleSlimMode = () => {
-    toggleSlimMode()
-    emit('collapse', isCollapsed.value)
+  toggleSlimMode()
+  emit('collapse', isCollapsed.value)
 }
 
 const checkWindowSize = () => {
-    const screenWidth = window.innerWidth;
-    if (screenWidth <= 1366) {
-        isLessMinScreen.value = true;
-        isCollapsed.value = true;
-        emit('sizeChange', {
-            isCollapse: isCollapsed.value,
-            isLessMinScreen: isLessMinScreen.value
-        })
-    } else {
-        isLessMinScreen.value = false;
-        isCollapsed.value = false;
-        emit('sizeChange', {
-            isCollapse: isCollapsed.value,
-            isLessMinScreen: isLessMinScreen.value
-        })
-    }
+  const screenWidth = window.innerWidth;
+  if (screenWidth <= 1366) {
+    isLessMinScreen.value = true;
+    isCollapsed.value = true;
+    emit('sizeChange', {
+      isCollapse: isCollapsed.value,
+      isLessMinScreen: isLessMinScreen.value
+    })
+  } else {
+    isLessMinScreen.value = false;
+    isCollapsed.value = false;
+    emit('sizeChange', {
+      isCollapse: isCollapsed.value,
+      isLessMinScreen: isLessMinScreen.value
+    })
+  }
 };
 
 // watch(() => props.data, (v) => {
@@ -91,11 +92,22 @@ const checkWindowSize = () => {
 // }
 
 onMounted(() => {
-    // initMenu(props.data);
-    checkWindowSize();
-    window.addEventListener('resize', checkWindowSize);
+  // initMenu(props.data);
+  checkWindowSize();
+  window.addEventListener('resize', checkWindowSize);
 });
 onUnmounted(() => {
-    window.addEventListener('resize', checkWindowSize);
+  window.addEventListener('resize', checkWindowSize);
 });
 </script>
+
+<style lang="scss" scoped>
+.item-menu{
+  --el-menu-text-color:#fff !important;
+  --el-menu-bg-color:rgb(33, 35, 43) !important;
+  --el-menu-hover-bg-color:none !important;
+}
+#item-menu {
+  font-family: 'Helvetica Neue';
+}
+</style>

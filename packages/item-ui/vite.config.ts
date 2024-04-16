@@ -50,12 +50,13 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': pathSrc,
+      '~/': `${pathSrc}/`,
     },
   },
   // css: {
   //   preprocessorOptions: {
   //     scss: {
-  //       additionalData: `@use "~/styles/element/customs.scss" as *;`,
+  //       additionalData: `@use "~/assets/styles/element/index.scss" as *;`,
   //     },
   //   },
   // },
