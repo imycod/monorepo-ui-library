@@ -103,7 +103,7 @@ const emit = defineEmits(['selectApplication', 'more', 'sizeChange', 'collapse',
 const {moreSysOpen, applicationLoading, changeMoreSysOpen} = createMoreSystem()
 const {isCollapsed, openedAccordion, toggleAccordion, toggleSlimMode} = createMenus(props)
 const {isLessMinScreen, removeCoverLayer} = createMask(isCollapsed)
-
+//
 function flattenMenu(menuList) {
   const flattenedMenu = [];
 
