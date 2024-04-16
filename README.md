@@ -12,3 +12,5 @@ This template should help get you started developing with Vue 3 and TypeScript i
 
 npm: wuxingshi
 npm email: wuxingshi97@gmail.com
+
+全图标组件iconify/vue 
