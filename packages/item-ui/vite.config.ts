@@ -5,7 +5,7 @@ import path from 'path';
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
-import Icons from 'unplugin-icons/vite'
+import Icons from 'unplugin-icons/vite';
 import IconsResolver from 'unplugin-icons/resolver';
 
 const pathSrc = path.resolve(__dirname, 'src');
@@ -38,6 +38,7 @@ export default defineConfig({
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'item-ui',
       formats: ['es', 'cjs'],
+      fileName: 'index',
     },
     terserOptions: {
       compress: {
@@ -51,6 +52,13 @@ export default defineConfig({
       '@': pathSrc,
     },
   },
+  // css: {
+  //   preprocessorOptions: {
+  //     scss: {
+  //       additionalData: `@use "~/styles/element/customs.scss" as *;`,
+  //     },
+  //   },
+  // },
   plugins: [
     vue(),
     AutoImport({

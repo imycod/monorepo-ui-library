@@ -1,4 +1,5 @@
 <template>
+    <button class="rounded-md bg-primary shadow-md text-white p-2 absolute top-2 right-2">测试</button>
     <el-menu router width="360" :default-active="defaultActive" :collapse="isCollapsed" @open="handleOpen"
         @close="handleClose">
         <template v-for="menu in data">

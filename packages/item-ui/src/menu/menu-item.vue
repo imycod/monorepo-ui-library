@@ -24,7 +24,7 @@ import {
     Location,
 } from '@element-plus/icons-vue'
 
-const props = defineProps<{
+defineProps<{
     data: MenuItemType;
 }>()
 </script>

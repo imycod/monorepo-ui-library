@@ -9,8 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@item/tailwind-config": "workspace:^",
-    "item-ui": "workspace:^",
+    "@unisc-ui/item": "workspace:^",
+    "@unisc-ui/tailwind-config": "^0.0.2",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router"
 
-import { ItemMenu } from "item-ui";
-import "item-ui/dist/style.css"
+import { ItemMenu } from "@unisc-ui/item";
+import "@unisc-ui/item/dist/style.css"
 
 const menuList = [
   {
