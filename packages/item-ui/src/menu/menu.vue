@@ -1,13 +1,38 @@
 <template>
-
   <!--  <el-config-provider namespace="ep">-->
+  <!--  <div id="unis-menu-panel&#45;&#45;container">-->
+
   <el-menu id="unis-menu--container" class="unis-item_menu" @select="select" router :default-active="defaultActive"
            :collapse="isCollapsed" @open="handleOpen"
            @close="handleClose">
-    <template v-for="menu in data">
-      <menu-item :data="menu" :activeMenu="activeMenu" :collapse="isCollapsed" className="unis-menu_item"></menu-item>
-    </template>
+    <div :class="!isCollapsed ? 'flex justify-between' : ''">
+      <a class="flex mb-4 items-center w-[150px] h-[56px]" href="/">
+        <div v-if="!isCollapsed" style="margin-left: 1.5rem;">
+          <slot name="main-logo"></slot>
+        </div>
+        <div style="margin-bottom: 1rem;margin-left: 0.8rem; " v-else>
+          <slot name="sub-logo"></slot>
+        </div>
+      </a>
+      <span :class="['flex items-center', isCollapsed ? 'flex-col justify-center' : '']">
+          <!-- 更多子系统按钮 -->
+          <a class="icon-wrapper flex mb-4 w-8 h-8 cursor-pointer items-center justify-center bg-black-100 truncate rounded-[8px] pt-0.5 text-[0.85rem] outline-none transition duration-300 ease-linear motion-reduce:transition-none"
+             :style="{ 'margin-right': !isCollapsed ? '0.5rem' : '0rem', 'margin-bottom': '16px' }"
+             @click="more(true)">
+              <img class="icon" :src="moreSysIcon" alt="">
+          </a>
+        <!-- 折叠按钮 -->
+            <a class="icon-wrapper flex mb-4 w-8 h-8 cursor-pointer items-center justify-center bg-black-100 truncate rounded-[8px] pt-0.5 text-[0.85rem] outline-none transition duration-300 ease-linear motion-reduce:transition-none"
+               :style="{ 'margin-right': !isCollapsed ? '1rem' : '0rem', 'margin-bottom': isCollapsed ? '10px' : '16px' }"
+               @click="onToggleSlimMode()">
+                <img class="icon" :src="collapsedIcon" :class="{ 'flip-horizontal': isCollapsed }" alt="">
+            </a>
+        </span>
+    </div>
+    <menu-item v-for="menu in data" :data="menu" :activeMenu="activeMenu" :collapse="isCollapsed"
+               className="unis-menu_item"></menu-item>
   </el-menu>
+  <!--  </div>-->
   <!--  </el-config-provider>-->
 </template>
 
@@ -19,6 +44,8 @@ import createMenus from "./hooks/menus"
 import createMask from "./hooks/mask"
 import {MenuItem as MenuItemType} from "./types"
 import {onMounted} from "vue";
+import moreSysIcon from '../assets/moreSys.svg';
+import collapsedIcon from '../assets/collapsed.svg';
 
 const props = withDefaults(defineProps<{
   collapse: boolean;
@@ -153,19 +180,30 @@ onUnmounted(() => {
   --el-menu-active-color: rgb(255, 255, 255) !important;
 }
 
+
 //:not(.el-menu--collapse)
 #unis-menu--container {
-  font-family: 'Helvetica Neue';
-  font-weight: 500;
-  font-size: 16px;
-  color: var(--el-menu-active-color);
-  line-height: 20px;
-  font-weight: 500;
-  height: 3rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  //:deep(.el-menu-item) {
+  //  font-family: 'Helvetica Neue';
+  //  font-weight: 500;
+  //  font-size: 16px;
+  //  color: var(--el-menu-active-color);
+  //  line-height: 20px;
+  //  font-weight: 500;
+  //  height: 3rem;
+  //  overflow: hidden;
+  //  text-overflow: ellipsis;
+  //  white-space: nowrap;
+  //}
 
+  padding: 32px 0px;
+
+  .icon-wrapper {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background-color: #2b2f3b;
+  }
 
   :deep(.el-menu-item .el-icon) {
 
@@ -209,13 +247,13 @@ onUnmounted(() => {
       position: absolute;
       z-index: -1;
       padding: 0px;
-      margin: 4px 6px;
+      margin: 6px 14px;
       border-radius: 8px;
       background-color: rgb(51, 56, 71);
       top: 0;
       left: 0;
-      width: 48px;
-      height: 48px;
+      width: 35px;
+      height: 35px;
     }
   }
 }

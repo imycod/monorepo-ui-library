@@ -38,12 +38,48 @@ defineProps<{
 </script>
 
 <style lang="scss">
+.common-title {
+  font-family: 'Helvetica Neue';
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+  height: 3rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .el-menu-item:hover {
   color: var(--el-menu-hover-text-color);
 }
 
 .el-sub-menu__title:hover {
   color: var(--el-menu-hover-text-color);
+}
+.unis-sub-menu__item{
+  .el-sub-menu__title{
+    @apply common-title;
+  }
+}
+.unis-sub-menu_item{
+  .el-sub-menu__title{
+    @apply common-title;
+  }
+}
+.unis-sub-menu__item{
+  @apply common-title;
+}
+.unis-menu_item{
+  @apply common-title;
+}
+
+.el-sub-menu.is-active{
+  .el-sub-menu__title:hover {
+    color: #fff;
+  }
+}
+.el-menu-item.is-active{
+  color:#fff;
 }
 </style>
 
@@ -99,7 +135,7 @@ defineProps<{
 
 .unis-sub-menu_item.is-active {
   :deep(.unis-sub-menu__item.is-active) {
-    color: var(--el-menu-hover-text-color);
+    color: var(--el-menu-hover-text-color) !important;
   }
 }
 
@@ -114,13 +150,13 @@ defineProps<{
       position: absolute;
       z-index: -1;
       padding: 0;
-      margin: 4px 6px;
+      margin: 6px 14px;
       border-radius: 8px;
       background-color: rgb(51, 56, 71);
       top: 0;
       left: 0;
-      width: 48px;
-      height: 48px;
+      width: 35px;
+      height: 35px;
     }
   }
 }

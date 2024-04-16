@@ -91,6 +91,9 @@ import {useDark, useToggle} from '@vueuse/core'
 
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
+
+import ItemShipLogo from './assets/item-ship-logo.svg';
+import ItemShipLogo2 from './assets/item-ship-logo2.svg';
 </script>
 
 <template>
@@ -98,7 +101,16 @@ const toggleDark = useToggle(isDark)
     <div class="flex">
       <div style="width: 360px;height: 100vh;">
         <ItemMenu style="height: 100%" :data="menuList" :default-active="route.path" @selectApplication="selectApplication" @more="more"
-                  @sizeChange="sizeChange" @collapse="collapse" @open="open" @close="close"></ItemMenu>
+                  @sizeChange="sizeChange" @collapse="collapse" @open="open" @close="close">
+          <template #main-logo>
+<!--            <ItemShipLogo></ItemShipLogo>-->
+            <img src="./assets/item-ship-logo.svg" alt="">
+          </template>
+          <template #sub-logo>
+<!--            <ItemShipLogo2></ItemShipLogo2>-->
+            <img src="./assets/item-ship-logo2.svg" alt="">
+          </template>
+        </ItemMenu>
       </div>
       <div>
         <el-button type="primary">aa</el-button>
