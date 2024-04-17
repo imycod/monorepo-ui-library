@@ -14,7 +14,9 @@
     "./dist/": {
       "import": "./dist/",
       "require": "./dist/"
-    }
+    },
+    "./item": "./dist/index.js",
+    "./dist/style.css": "./dist/style.css"
   },
   "scripts": {
     "dev": "vite build --watch",
