@@ -95,6 +95,11 @@ export default defineConfig({
 		Icons({
 			autoInstall: true,
 		}),
-		dts(),
+		dts({
+			// include: ['src/components/**/*', 'src/utils/**/*'],
+			staticImport: true,
+			outputDir: './dist',
+			insertTypesEntry: true,
+		}),
 	],
 });
