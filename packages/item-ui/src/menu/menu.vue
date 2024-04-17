@@ -421,7 +421,7 @@ onUnmounted(() => {
       position: absolute;
       z-index: -1;
       padding: 0px;
-      margin: 6px 14px;
+      margin: 10px 14px;
       border-radius: 8px;
       background-color: rgb(51, 56, 71);
       top: 0;

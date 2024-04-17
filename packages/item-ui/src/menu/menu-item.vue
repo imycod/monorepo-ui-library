@@ -93,22 +93,54 @@ defineProps<{
 
 .unis-sub-menu__item {
   .el-sub-menu__title {
-    @apply common-title;
+    font-family: 'Helvetica Neue';
+    font-weight: 500;
+    font-size: 16px !important;
+    line-height: 20px;
+    font-weight: 500;
+    height: 3rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
 
 .unis-sub-menu_item {
   .el-sub-menu__title {
-    @apply common-title;
+    font-family: 'Helvetica Neue';
+    font-weight: 500;
+    font-size: 16px !important;
+    line-height: 20px;
+    font-weight: 500;
+    height: 3rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
 
 .unis-sub-menu__item {
-  @apply common-title;
+  font-family: 'Helvetica Neue';
+  font-weight: 500;
+  font-size: 16px !important;
+  line-height: 20px;
+  font-weight: 500;
+  height: 3rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .unis-menu_item {
-  @apply common-title;
+  font-family: 'Helvetica Neue';
+  font-weight: 500;
+  font-size: 16px !important;
+  line-height: 20px;
+  font-weight: 500;
+  height: 3rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .el-sub-menu.is-active {
@@ -189,7 +221,7 @@ defineProps<{
       position: absolute;
       z-index: -1;
       padding: 0;
-      margin: 6px 14px;
+      margin: 10px 14px;
       border-radius: 8px;
       background-color: rgb(51, 56, 71);
       top: 0;
