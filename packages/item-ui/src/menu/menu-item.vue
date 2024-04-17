@@ -7,10 +7,10 @@
       <!-- <i :class="'el-icon-' + data.icon"></i> -->
       <!-- <i-ep-add-location /> -->
       <el-icon :size="20">
+        <i class="iconfont" v-if="data._isIconFont" :class="data.icon"></i>
         <!--        <Location/>-->
         <!--        <i-ep-add-location />-->
-        <!--        <Icon :icon="data.icon" />-->
-        <i class="iconfont" :class="data.icon"></i>
+        <Icon :icon="data.icon" v-else/>
       </el-icon>
       <span>{{ data.title }}</span>
     </template>
@@ -19,9 +19,9 @@
   </el-sub-menu>
   <el-menu-item :class="className" v-else :index="data.path">
     <el-icon :size="20">
+      <i v-if="data._isIconFont" :class="data.icon"></i>
       <!--      <i-ep-apple></i-ep-apple>-->
-      <!--      <Icon :icon="data.icon" />-->
-      <i class="iconfont" :class="data.icon"></i>
+      <Icon :icon="data.icon" v-else/>
     </el-icon>
     <span>{{ data.title }}</span>
   </el-menu-item>
@@ -31,7 +31,7 @@
 import {MenuItem as MenuItemType} from "./types"
 import Minus from "./minus.vue"
 import Plus from "./plus.vue"
-// import { Icon } from '@iconify/vue';
+import {Icon} from '@iconify/vue';
 
 // import {
 //   Location,
@@ -47,20 +47,30 @@ defineProps<{
 
 <style lang="scss">
 .unis-item_menu--popper {
-  --el-popover-bg-color: #1d1e1f !important;
-  --el-bg-color-overlay: #1d1e1f !important;
-  --el-popover-font-size: 14px;
-  --el-popover-border-color: #363637 !important;
-  --el-popover-padding: 12px;
-  --el-popover-padding-large: 18px 20px !important;
-  --el-popover-title-font-size: 16px;
-  --el-popover-title-text-color: #E5EAF3 !important;
-  --el-popover-border-radius: 4px;
+  background: #1d1e1f !important;
+  background-color: #1d1e1f !important;
 
+  .el-menu-item:hover, .el-sub-menu__title:hover {
+    color: var(--item-ship-menu-hover-text-color) !important;
+    background-color: var(--item-ship-bg-color);
+  }
+
+  .el-menu--popup {
+    background-color: var(--item-ship-bg-color);
+
+    span {
+      color: #fff;
+    }
+
+    //&:hover {
+    //  span {
+    //    color: var(--item-ship-menu-hover-text-color) !important;
+    //  }
+    //}
+  }
 }
-:deep(.el-popper.unis-item_menu--popper) {
-  background: var(--el-bg-color-overlay) !important;
-}
+
+
 .common-title {
   font-family: 'Helvetica Neue';
   font-weight: 500;

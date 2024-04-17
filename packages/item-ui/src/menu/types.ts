@@ -3,5 +3,6 @@ export interface MenuItem {
   icon: string;
   index: string;
   path: string;
+  _isIconFont: boolean;
   children?: MenuItem[];
 }

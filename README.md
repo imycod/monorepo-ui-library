@@ -10,7 +10,62 @@ This template should help get you started developing with Vue 3 and TypeScript i
 
 
 
+### 起步
+```
+pnpm install
+
+```
+cd /client
+```
+pnpm add @unisc-ui/item
+```
+then
+```
+pnpm run dev
+```
+or /item-web-nice-mug
+```
+pnpm i
+pnpm run dev
+```
+
+### Dev
+
+手动安装
+```
+pnpm client add @unisc-ui/item@workspace
+```
+并行执行，打包packages/item
+```
+pnpm dev 
+```
+组件编写完最后
+cd packages/item
+```
+pnpm build or npm build
+```
+
+### Use
+```
+npm install @unisc-ui/item
+
+import { ItemMenu } from '@unisc-ui/item'
+import "@unisc-ui/item/dist/style.css"
+
+
+<item-menu :data="[]" ...args></item-menu>
+```
+
+### Api 文档
+Item_Ship Web 公共组件集成 - Menu
+https://wiki.logisticsteam.com/pages/viewpage.action?pageId=88778429
+
+----
+author:
 npm: wuxingshi
 npm email: wuxingshi97@gmail.com
+npm public: https://www.npmjs.com/search?q=%40unisc-ui
 
-全图标组件iconify/vue 
+
+图标库：iconify/vue 
+

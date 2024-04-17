@@ -136,6 +136,7 @@ let flatMenu = null
 
 function initMenu() {
   splitMenuByPosition(props.data)
+  addExtraParameters(props.data)
   flatMenu = flattenMenu(props.data)
 }
 
@@ -158,6 +159,12 @@ function splitMenuByPosition(menuList) {
       bottomMenu.value = menuList2
     }
   }
+}
+
+function addExtraParameters(menuList) {
+  menuList.forEach(menu => {
+    menu._isIconFont = menu.icon.includes('iconfont')
+  })
 }
 
 const activeMenu = ref(null)
@@ -239,7 +246,7 @@ onUnmounted(() => {
 <style lang="scss" scoped>
 .unis-item_menu {
   --el-menu-text-color: #fff !important;
-  --el-menu-bg-color: rgb(33, 35, 43) !important;
+  --el-menu-bg-color: var(--item-ship-bg-color) !important;
   --el-menu-hover-bg-color: none !important;
   --el-menu-active-color: rgb(255, 255, 255) !important;
   --el-menu-border-color:none !important;

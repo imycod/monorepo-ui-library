@@ -11,36 +11,36 @@ const menuList = [
     index:'1',
     title: 'Dashboard',
     path: `/${dir}/dashboard`,
-    icon: 'ship-dashboard',
+    icon: 'iconfont ship-dashboard',
   },
   {
     index:'2',
     title: 'Channels',
     path: `/${dir}/channels`,
-    icon: 'ship-channels',
+    icon: 'iconfont ship-channels',
   },
   {
     index:'3',
     title: 'Orders',
     path: `/${dir}/orders`,
-    icon: 'ship-orders',
+    icon: 'iconfont ship-orders',
   },
   {
     index:'4',
     title: 'Mapping',
     path: `/${dir}/mapping`,
-    icon: 'ship-mapping',
+    icon: 'iconfont ship-mapping',
   },
   {
     index:'5',
     title: 'Products',
     path: `/${dir}/products`,
-    icon: 'ship-products',
+    icon: 'iconfont ship-products',
   },
   {
     index:'6',
     title: 'Shipments',
-    icon: 'ship-shipments',
+    icon: 'iconfont ship-shipments',
     path: `/${dir}/shipments`,
     children: [
       {
@@ -63,7 +63,7 @@ const menuList = [
   {
     index:'7',
     title: 'Transaction',
-    icon: 'ship-transaction',
+    icon: 'iconfont ship-transaction',
     path: `/${dir}/transaction`,
     children: [
       {
@@ -86,7 +86,7 @@ const menuList = [
   {
     index:'8',
     title: 'User',
-    icon: 'ship-user',
+    icon: 'iconfont ship-user',
     path: `/${dir}/user`,
     children: [
       {
@@ -109,7 +109,7 @@ const menuList = [
   {
     index:'9',
     title: 'Settings',
-    icon: 'ship-settings',
+    icon: 'iconfont ship-settings',
     path: `/${dir}/settings`,
     children: [
       {
@@ -150,7 +150,7 @@ const menuList = [
     index:'10',
     title: 'Ticket Support',
     path: `/${dir}/ticketsupport`,
-    icon: 'ship-support-ticket',
+    icon: 'iconfont ship-support-ticket',
   },
 ];
 
