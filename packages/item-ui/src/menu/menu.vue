@@ -241,11 +241,15 @@ onUnmounted(() => {
 
 <style lang="scss" scoped>
 .unis-item_menu {
-  --el-menu-text-color: #fff !important;
+  --el-menu-text-color: #fff;
   --el-menu-bg-color: var(--item-ship-bg-color);
-  --el-menu-hover-bg-color: none !important;
-  --el-menu-active-color: rgb(255, 255, 255) !important;
-  --el-menu-border-color: none !important;
+  --el-menu-hover-bg-color: none;
+  --el-menu-active-color: rgb(255, 255, 255);
+  --el-menu-border-color: none;
+}
+
+.unis-menu_item.is-active {
+  background-color: none;
 }
 
 //.flip-horizontal{
@@ -421,7 +425,7 @@ onUnmounted(() => {
       position: absolute;
       z-index: -1;
       padding: 0px;
-      margin: 10px 14px;
+      margin: 6px 14px;
       border-radius: 8px;
       background-color: rgb(51, 56, 71);
       top: 0;
