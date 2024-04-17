@@ -1,7 +1,7 @@
 <template>
   <!--  <el-config-provider namespace="ep">-->
-  <div id="unis-menu-panel--container">
-    <el-menu v-if="!moreSysOpen" id="unis-menu--container" class="unis-item_menu h-full" @select="select" router
+  <div id="unis-menu-panel--container" :class="collapseClass">
+    <el-menu popper-class="unis-item_menu--popper" v-if="!moreSysOpen" id="unis-menu--container" class="unis-item_menu h-full" @select="select" router
              :default-active="defaultActive"
              :collapse="isCollapsed" @open="handleOpen"
              @close="handleClose"
@@ -30,9 +30,15 @@
             </a>
         </span>
       </div>
-      <div class="body--container">
-        <menu-item v-for="menu in data" :data="menu" :activeMenu="activeMenu" :collapse="isCollapsed"
-                   className="unis-menu_item"></menu-item>
+      <div class="body--container flex flex-col justify-between" :style="{height:isCollapsed ?'calc(90% - 90px)':'90%'}">
+        <div>
+          <menu-item v-for="menu in topMenu" :data="menu" :activeMenu="activeMenu" :collapse="isCollapsed"
+                     className="unis-menu_item"></menu-item>
+        </div>
+        <div>
+          <menu-item v-for="menu in bottomMenu" :data="menu" :activeMenu="activeMenu" :collapse="isCollapsed"
+                     className="unis-menu_item"></menu-item>
+        </div>
       </div>
     </el-menu>
     <!-- 3.子系统入口 -->
@@ -100,6 +106,7 @@ const props = withDefaults(defineProps<{
   applications: any[];
   defaultActive?: string;
   defaultApplicationActive: string;
+  position:[string, number];
 }>(), {collapse: false, data: [], defaultActive: '1'});
 
 const emit = defineEmits(['selectApplication', 'more', 'sizeChange', 'collapse', 'open', 'close'])
@@ -127,8 +134,37 @@ function flattenMenu(menuList) {
 
 let flatMenu = null
 
-function initMenu(menuList) {
-  flatMenu = flattenMenu(menuList)
+function initMenu() {
+  splitMenuByPosition(props.data)
+  addExtraParameters(props.data)
+  flatMenu = flattenMenu(props.data)
+}
+
+const topMenu = ref([])
+const bottomMenu = ref([])
+function splitMenuByPosition(menuList) {
+  topMenu.value = menuList
+  if (props.position) {
+    const index = menuList.findIndex(menu => {
+      if (menu.index) {
+        return menu.index == props.position
+      } else {
+        throw new Error('menu item no index');
+      }
+    })
+    if (index !== -1) {
+      const [menuList1, menuList2] = [menuList.slice(0, index), menuList.slice(index)]
+
+      topMenu.value = menuList1
+      bottomMenu.value = menuList2
+    }
+  }
+}
+
+function addExtraParameters(menuList) {
+  menuList.forEach(menu => {
+    menu._isIconFont = menu.icon.includes('iconfont')
+  })
 }
 
 const activeMenu = ref(null)
@@ -150,6 +186,12 @@ function select(index, indexPath) {
 const isEnable = () => {
   return (item) => item.status === 'ENABLE';
 }
+const collapseClass = computed(()=>{
+  return {
+    'min-w-[360px]': !isCollapsed.value,
+    'fixed z-33': (!isCollapsed.value || moreSysOpen.value) && isLessMinScreen.value
+  }
+})
 
 const more = (t: Boolean) => {
   changeMoreSysOpen(t)
@@ -192,7 +234,7 @@ const checkWindowSize = () => {
 };
 
 onMounted(() => {
-  initMenu(props.data);
+  initMenu();
   checkWindowSize();
   window.addEventListener('resize', checkWindowSize);
 });
@@ -204,9 +246,10 @@ onUnmounted(() => {
 <style lang="scss" scoped>
 .unis-item_menu {
   --el-menu-text-color: #fff !important;
-  --el-menu-bg-color: rgb(33, 35, 43) !important;
+  --el-menu-bg-color: var(--item-ship-bg-color) !important;
   --el-menu-hover-bg-color: none !important;
   --el-menu-active-color: rgb(255, 255, 255) !important;
+  --el-menu-border-color:none !important;
 }
 
 //.flip-horizontal{
@@ -360,9 +403,13 @@ onUnmounted(() => {
 
 #unis-menu--container.el-menu--collapse {
   :deep(.unis-menu_item) {
-    display: flex;
-    align-content: center;
-    justify-content: center;
+    //display: flex;
+    //align-content: center;
+    //justify-content: center;
+  }
+
+  :deep(.el-icon + span) {
+    display: none;
   }
 
   :deep(.unis-menu_item.is-active) {
@@ -374,7 +421,7 @@ onUnmounted(() => {
       position: absolute;
       z-index: -1;
       padding: 0px;
-      margin: 6px 14px;
+      margin: 10px 14px;
       border-radius: 8px;
       background-color: rgb(51, 56, 71);
       top: 0;

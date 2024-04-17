@@ -7,18 +7,21 @@
       <!-- <i :class="'el-icon-' + data.icon"></i> -->
       <!-- <i-ep-add-location /> -->
       <el-icon :size="20">
-<!--        <Location/>-->
-<!--        <i-ep-add-location />-->
-        <Icon :icon="`mdi:${data.icon}`" />
+        <i class="iconfont" v-if="data._isIconFont" :class="data.icon"></i>
+        <!--        <Location/>-->
+        <!--        <i-ep-add-location />-->
+        <Icon :icon="data.icon" v-else/>
       </el-icon>
       <span>{{ data.title }}</span>
     </template>
-    <menu-item v-for="child in data.children" :active-menu="activeMenu" :collapse="collapse"  className="unis-sub-menu__item" :data="child"></menu-item>
+    <menu-item v-for="child in data.children" :active-menu="activeMenu" :collapse="collapse"
+               className="unis-sub-menu__item" :data="child"></menu-item>
   </el-sub-menu>
   <el-menu-item :class="className" v-else :index="data.path">
     <el-icon :size="20">
-<!--      <i-ep-apple></i-ep-apple>-->
-      <Icon :icon="`mdi:${data.icon}`" />
+      <i v-if="data._isIconFont" :class="data.icon"></i>
+      <!--      <i-ep-apple></i-ep-apple>-->
+      <Icon :icon="data.icon" v-else/>
     </el-icon>
     <span>{{ data.title }}</span>
   </el-menu-item>
@@ -28,7 +31,8 @@
 import {MenuItem as MenuItemType} from "./types"
 import Minus from "./minus.vue"
 import Plus from "./plus.vue"
-import { Icon } from '@iconify/vue';
+import {Icon} from '@iconify/vue';
+
 // import {
 //   Location,
 // } from '@element-plus/icons-vue'
@@ -42,6 +46,31 @@ defineProps<{
 </script>
 
 <style lang="scss">
+.unis-item_menu--popper {
+  background: #1d1e1f !important;
+  background-color: #1d1e1f !important;
+
+  .el-menu-item:hover, .el-sub-menu__title:hover {
+    color: var(--item-ship-menu-hover-text-color) !important;
+    background-color: var(--item-ship-bg-color);
+  }
+
+  .el-menu--popup {
+    background-color: var(--item-ship-bg-color);
+
+    span {
+      color: #fff;
+    }
+
+    //&:hover {
+    //  span {
+    //    color: var(--item-ship-menu-hover-text-color) !important;
+    //  }
+    //}
+  }
+}
+
+
 .common-title {
   font-family: 'Helvetica Neue';
   font-weight: 500;
@@ -53,6 +82,7 @@ defineProps<{
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 .el-menu-item:hover {
   color: var(--el-menu-hover-text-color);
 }
@@ -60,30 +90,69 @@ defineProps<{
 .el-sub-menu__title:hover {
   color: var(--el-menu-hover-text-color);
 }
-.unis-sub-menu__item{
-  .el-sub-menu__title{
-    @apply common-title;
+
+.unis-sub-menu__item {
+  .el-sub-menu__title {
+    font-family: 'Helvetica Neue';
+    font-weight: 500;
+    font-size: 16px !important;
+    line-height: 20px;
+    font-weight: 500;
+    height: 3rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
-}
-.unis-sub-menu_item{
-  .el-sub-menu__title{
-    @apply common-title;
-  }
-}
-.unis-sub-menu__item{
-  @apply common-title;
-}
-.unis-menu_item{
-  @apply common-title;
 }
 
-.el-sub-menu.is-active{
+.unis-sub-menu_item {
+  .el-sub-menu__title {
+    font-family: 'Helvetica Neue';
+    font-weight: 500;
+    font-size: 16px !important;
+    line-height: 20px;
+    font-weight: 500;
+    height: 3rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.unis-sub-menu__item {
+  font-family: 'Helvetica Neue';
+  font-weight: 500;
+  font-size: 16px !important;
+  line-height: 20px;
+  font-weight: 500;
+  height: 3rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.unis-menu_item {
+  font-family: 'Helvetica Neue';
+  font-weight: 500;
+  font-size: 16px !important;
+  line-height: 20px;
+  font-weight: 500;
+  height: 3rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+//.el-sub-menu.is-active {
+.unis-sub-menu_item.is-active {
   .el-sub-menu__title:hover {
     color: #fff;
   }
 }
-.el-menu-item.is-active{
-  color:#fff;
+
+//.el-menu-item.is-active {
+.unis-menu_item.is-active {
+  color: #fff;
 }
 </style>
 
@@ -154,7 +223,7 @@ defineProps<{
       position: absolute;
       z-index: -1;
       padding: 0;
-      margin: 6px 14px;
+      margin: 10px 14px;
       border-radius: 8px;
       background-color: rgb(51, 56, 71);
       top: 0;

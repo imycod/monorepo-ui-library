@@ -1,7 +1,7 @@
 {
   "name": "@unisc-ui/item",
   "private": false,
-  "version": "0.0.12",
+  "version": "0.0.19",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -14,10 +14,7 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./dist/": {
-      "import": "./dist/",
-      "require": "./dist/"
-    }
+    "./dist/style.css": "./dist/style.css"
   },
   "scripts": {
     "dev": "vite build --watch",
