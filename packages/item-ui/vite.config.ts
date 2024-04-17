@@ -43,7 +43,7 @@ export default defineConfig({
 			entry: path.resolve(__dirname, 'src/index.ts'),
 			name: 'item-ui',
 			formats: ['es', 'cjs', 'umd'],
-			fileName: (format) => `item-ui.${format}.js`,
+			fileName: (format) => `index.${format}.js`,
 		},
 		terserOptions: {
 			compress: {
