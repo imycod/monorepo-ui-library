@@ -143,13 +143,15 @@ defineProps<{
   white-space: nowrap;
 }
 
-.el-sub-menu.is-active {
+//.el-sub-menu.is-active {
+.unis-sub-menu_item.is-active {
   .el-sub-menu__title:hover {
     color: #fff;
   }
 }
 
-.el-menu-item.is-active {
+//.el-menu-item.is-active {
+.unis-menu_item.is-active {
   color: #fff;
 }
 </style>
