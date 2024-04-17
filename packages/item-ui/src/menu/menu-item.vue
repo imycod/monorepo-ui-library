@@ -94,7 +94,8 @@ defineProps<{
 .unis-sub-menu__item {
   .el-sub-menu__title {
     font-family: 'Helvetica Neue';
-    font-weight: 500;
+    font-weight: 500 !important;
+    color: #fff !important;
     font-size: 16px !important;
     line-height: 20px;
     font-weight: 500;
@@ -107,8 +108,9 @@ defineProps<{
 
 .unis-sub-menu_item {
   .el-sub-menu__title {
+    color:#fff !important;
     font-family: 'Helvetica Neue';
-    font-weight: 500;
+    font-weight: 500 !important;
     font-size: 16px !important;
     line-height: 20px;
     font-weight: 500;
@@ -121,7 +123,8 @@ defineProps<{
 
 .unis-sub-menu__item {
   font-family: 'Helvetica Neue';
-  font-weight: 500;
+  font-weight: 500 !important;
+  color:#fff !important; 
   font-size: 16px !important;
   line-height: 20px;
   font-weight: 500;
@@ -133,8 +136,9 @@ defineProps<{
 
 .unis-menu_item {
   font-family: 'Helvetica Neue';
-  font-weight: 500;
+  font-weight: 500 !important;
   font-size: 16px !important;
+  color: #fff !important;
   line-height: 20px;
   font-weight: 500;
   height: 3rem;

@@ -1,11 +1,9 @@
 <template>
   <!--  <el-config-provider namespace="ep">-->
   <div id="unis-menu-panel--container" :class="collapseClass">
-    <el-menu popper-class="unis-item_menu--popper" v-if="!moreSysOpen" id="unis-menu--container" class="unis-item_menu h-full" @select="select" router
-             :default-active="defaultActive"
-             :collapse="isCollapsed" @open="handleOpen"
-             @close="handleClose"
-             unique-opened>
+    <el-menu popper-class="unis-item_menu--popper" v-if="!moreSysOpen" id="unis-menu--container"
+      class="unis-item_menu h-full" @select="select" router :default-active="defaultActive" :collapse="isCollapsed"
+      @open="handleOpen" @close="handleClose" unique-opened>
       <div :class="!isCollapsed ? 'flex justify-between' : ''">
         <a class="flex mb-4 items-center w-[150px] h-[56px]" href="/">
           <div v-if="!isCollapsed" style="margin-left: 1.5rem;">
@@ -18,49 +16,48 @@
         <span :class="['flex items-center', isCollapsed ? 'flex-col justify-center' : '']">
           <!-- 更多子系统按钮 -->
           <a class="icon-wrapper flex mb-4 w-8 h-8 cursor-pointer items-center justify-center bg-black-100 truncate rounded-[8px] pt-0.5 text-[0.85rem] outline-none transition duration-300 ease-linear motion-reduce:transition-none"
-             :style="{ 'margin-right': !isCollapsed ? '0.5rem' : '0rem', 'margin-bottom': '16px' }"
-             @click="more(true)">
-              <img class="icon" :src="moreSysIcon" alt="">
+            :style="{ 'margin-right': !isCollapsed ? '0.5rem' : '0rem', 'margin-bottom': '16px' }" @click="more(true)">
+            <img class="icon" :src="moreSysIcon" alt="">
           </a>
           <!-- 折叠按钮 -->
-            <a class="icon-wrapper flex mb-4 w-8 h-8 cursor-pointer items-center justify-center bg-black-100 truncate rounded-[8px] pt-0.5 text-[0.85rem] outline-none transition duration-300 ease-linear motion-reduce:transition-none"
-               :style="{ 'margin-right': !isCollapsed ? '1rem' : '0rem', 'margin-bottom': isCollapsed ? '10px' : '16px' }"
-               @click="onToggleSlimMode()">
-                <img class="icon" :src="collapsedIcon" :class="{ 'flip-horizontal': isCollapsed }" alt="">
-            </a>
+          <a class="icon-wrapper flex mb-4 w-8 h-8 cursor-pointer items-center justify-center bg-black-100 truncate rounded-[8px] pt-0.5 text-[0.85rem] outline-none transition duration-300 ease-linear motion-reduce:transition-none"
+            :style="{ 'margin-right': !isCollapsed ? '1rem' : '0rem', 'margin-bottom': isCollapsed ? '10px' : '16px' }"
+            @click="onToggleSlimMode()">
+            <img class="icon" :src="collapsedIcon" :class="{ 'flip-horizontal': isCollapsed }" alt="">
+          </a>
         </span>
       </div>
-      <div class="body--container flex flex-col justify-between" :style="{height:isCollapsed ?'calc(90% - 90px)':'90%'}">
+      <div class="body--container flex flex-col justify-between"
+        :style="{ height: isCollapsed ? 'calc(90% - 90px)' : '90%' }">
         <div>
           <menu-item v-for="menu in topMenu" :data="menu" :activeMenu="activeMenu" :collapse="isCollapsed"
-                     className="unis-menu_item"></menu-item>
+            className="unis-menu_item"></menu-item>
         </div>
         <div>
           <menu-item v-for="menu in bottomMenu" :data="menu" :activeMenu="activeMenu" :collapse="isCollapsed"
-                     className="unis-menu_item"></menu-item>
+            className="unis-menu_item"></menu-item>
         </div>
       </div>
     </el-menu>
     <!-- 3.子系统入口 -->
     <div v-if="moreSysOpen" class="more-sys bg-[var(--Seller-Item-Black-300,_#21232B)] h-full z-10"
-         style="height: 100%;">
+      style="height: 100%;">
       <div style="margin-right: 13px;margin-bottom: 16px; width: 347px;height: 32px; display: flex;
     flex-direction: row-reverse;" class="mb-[16px] mr-[13px] flex-initial shrink-0">
         <a @click="more(false)"
-           class="icon-wrapper flex ml-auto mb-4 w-8 h-8 cursor-pointer items-center justify-center bg-black-100 truncate rounded-[8px] pt-0.5 text-[0.85rem] outline-none transition duration-300 ease-linear motion-reduce:transition-none">
+          class="icon-wrapper flex ml-auto mb-4 w-8 h-8 cursor-pointer items-center justify-center bg-black-100 truncate rounded-[8px] pt-0.5 text-[0.85rem] outline-none transition duration-300 ease-linear motion-reduce:transition-none">
           <img class="icon" :src="backIcon" alt="">
         </a>
       </div>
-      <div class="overflow-y-auto flex-auto px-[24px]" style="padding: 0px 24px;"
-           v-loading.body="!applications.length" element-loading-text="loading...">
+      <div class="overflow-y-auto flex-auto px-[24px]" style="padding: 0px 24px;" v-loading.body="!applications.length"
+        element-loading-text="loading...">
         <div v-for="(item, index) in applications" :key="index" v-if="isEnable(item)"
-             @click="() => emit('selectApplication', item)"
-             :title="item.name" class="flex items-center">
+          @click="() => emit('selectApplication', item)" :title="item.name" class="flex items-center">
           <div class="flex-column w-full app-card--container">
             <div class="cursor-pointer app-card-wrap rounded-lg flex justify-between items-center">
               <div class="flex flex-col justify-start" style="flex-direction: column;">
                 <div>
-                  <img :src="item.logoFileId" class="app-logo"/>
+                  <img :src="item.logoFileId" class="app-logo" />
                 </div>
 
                 <div class="pt-2">
@@ -68,15 +65,14 @@
                 </div>
               </div>
               <div v-if="item.code === defaultApplicationActive">
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
-                     xmlns="http://www.w3.org/2000/svg">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
-                      d="M8.99984 0.379761C4.39984 0.379761 0.666504 4.11309 0.666504 8.71309C0.666504 13.3131 4.39984 17.0464 8.99984 17.0464C13.5998 17.0464 17.3332 13.3131 17.3332 8.71309C17.3332 4.11309 13.5998 0.379761 8.99984 0.379761ZM7.33317 12.8798L3.1665 8.71309L4.3415 7.53809L7.33317 10.5214L13.6582 4.19643L14.8332 5.37976L7.33317 12.8798Z"
-                      fill="#34A145"/>
+                    d="M8.99984 0.379761C4.39984 0.379761 0.666504 4.11309 0.666504 8.71309C0.666504 13.3131 4.39984 17.0464 8.99984 17.0464C13.5998 17.0464 17.3332 13.3131 17.3332 8.71309C17.3332 4.11309 13.5998 0.379761 8.99984 0.379761ZM7.33317 12.8798L3.1665 8.71309L4.3415 7.53809L7.33317 10.5214L13.6582 4.19643L14.8332 5.37976L7.33317 12.8798Z"
+                    fill="#34A145" />
                 </svg>
               </div>
             </div>
-            <el-divider class="w-full m-0 px-[8px]" v-if="index !== applications.length - 1"/>
+            <el-divider class="w-full m-0 px-[8px]" v-if="index !== applications.length - 1" />
           </div>
         </div>
       </div>
@@ -94,8 +90,8 @@ import MenuItem from "./menu-item.vue"
 import createMoreSystem from "./hooks/moreSystem"
 import createMenus from "./hooks/menus"
 import createMask from "./hooks/mask"
-import {MenuItem as MenuItemType} from "./types"
-import {onMounted} from "vue";
+import { MenuItem as MenuItemType } from "./types"
+import { onMounted } from "vue";
 import moreSysIcon from '../assets/moreSys.svg';
 import collapsedIcon from '../assets/collapsed.svg';
 import backIcon from "../assets/back.svg";
@@ -106,20 +102,20 @@ const props = withDefaults(defineProps<{
   applications: any[];
   defaultActive?: string;
   defaultApplicationActive: string;
-  position:[string, number];
-}>(), {collapse: false, data: [], defaultActive: '1'});
+  position: [string, number];
+}>(), { collapse: false, data: [], defaultActive: '1' });
 
 const emit = defineEmits(['selectApplication', 'more', 'sizeChange', 'collapse', 'open', 'close'])
-const {moreSysOpen, applicationLoading, changeMoreSysOpen} = createMoreSystem()
-const {isCollapsed, openedAccordion, toggleAccordion, toggleSlimMode} = createMenus(props)
-const {isLessMinScreen, removeCoverLayer} = createMask(isCollapsed)
+const { moreSysOpen, applicationLoading, changeMoreSysOpen } = createMoreSystem()
+const { isCollapsed, openedAccordion, toggleAccordion, toggleSlimMode } = createMenus(props)
+const { isLessMinScreen, removeCoverLayer } = createMask(isCollapsed)
 //
 function flattenMenu(menuList) {
   const flattenedMenu = [];
 
   function flatten(menu) {
     menu.forEach((item) => {
-      flattenedMenu.push({...item});
+      flattenedMenu.push({ ...item });
 
       if (item.children) {
         flatten(item.children);
@@ -186,7 +182,7 @@ function select(index, indexPath) {
 const isEnable = () => {
   return (item) => item.status === 'ENABLE';
 }
-const collapseClass = computed(()=>{
+const collapseClass = computed(() => {
   return {
     'min-w-[360px]': !isCollapsed.value,
     'fixed z-33': (!isCollapsed.value || moreSysOpen.value) && isLessMinScreen.value
@@ -246,10 +242,10 @@ onUnmounted(() => {
 <style lang="scss" scoped>
 .unis-item_menu {
   --el-menu-text-color: #fff !important;
-  --el-menu-bg-color: var(--item-ship-bg-color) !important;
+  --el-menu-bg-color: var(--item-ship-bg-color);
   --el-menu-hover-bg-color: none !important;
   --el-menu-active-color: rgb(255, 255, 255) !important;
-  --el-menu-border-color:none !important;
+  --el-menu-border-color: none !important;
 }
 
 //.flip-horizontal{
@@ -258,6 +254,10 @@ onUnmounted(() => {
 
 #unis-menu-panel--container {
   overflow: hidden;
+  height: 100%;
+  z-index: 100;
+  background-color: #21232B !important;
+
 
   .icon-wrapper {
     width: 32px;
@@ -352,6 +352,7 @@ onUnmounted(() => {
 
 //:not(.el-menu--collapse)
 #unis-menu--container {
+  background-color: #21232B;
   //:deep(.el-menu-item) {
   //  font-family: 'Helvetica Neue';
   //  font-weight: 500;
@@ -365,9 +366,10 @@ onUnmounted(() => {
   //  white-space: nowrap;
   //}
 
-  .body--container{
+  .body--container {
     overflow-y: scroll;
     height: 90%;
+
     &::-webkit-scrollbar {
       width: 1px;
     }
@@ -375,9 +377,7 @@ onUnmounted(() => {
 
   padding: 32px 0px;
 
-  :deep(.el-menu-item .el-icon) {
-
-  }
+  :deep(.el-menu-item .el-icon) {}
 
   // or .el-menu-item.is-active then remove menu-item unis-sub-menu_item.is-active.is-opened
   // .unis-menu_item
