@@ -11,36 +11,36 @@ const menuList = [
     index:'1',
     title: 'Dashboard',
     path: `/${dir}/dashboard`,
-    icon: 'dashboard',
+    icon: 'ship-dashboard',
   },
   {
     index:'2',
     title: 'Channels',
     path: `/${dir}/channels`,
-    icon: 'storefront',
+    icon: 'ship-channels',
   },
   {
     index:'3',
     title: 'Orders',
     path: `/${dir}/orders`,
-    icon: 'shopping_bag',
+    icon: 'ship-orders',
   },
   {
     index:'4',
     title: 'Mapping',
     path: `/${dir}/mapping`,
-    icon: 'dataset',
+    icon: 'ship-mapping',
   },
   {
     index:'5',
     title: 'Products',
     path: `/${dir}/products`,
-    icon: 'discount',
+    icon: 'ship-products',
   },
   {
     index:'6',
     title: 'Shipments',
-    icon: 'vertical_shades',
+    icon: 'ship-shipments',
     path: `/${dir}/shipments`,
     children: [
       {
@@ -63,7 +63,7 @@ const menuList = [
   {
     index:'7',
     title: 'Transaction',
-    icon: 'multiple_stop',
+    icon: 'ship-transaction',
     path: `/${dir}/transaction`,
     children: [
       {
@@ -86,7 +86,7 @@ const menuList = [
   {
     index:'8',
     title: 'User',
-    icon: 'supervisor_account',
+    icon: 'ship-user',
     path: `/${dir}/user`,
     children: [
       {
@@ -109,7 +109,7 @@ const menuList = [
   {
     index:'9',
     title: 'Settings',
-    icon: 'settings',
+    icon: 'ship-settings',
     path: `/${dir}/settings`,
     children: [
       {
@@ -150,7 +150,7 @@ const menuList = [
     index:'10',
     title: 'Ticket Support',
     path: `/${dir}/ticketsupport`,
-    icon: 'support',
+    icon: 'ship-support-ticket',
   },
 ];
 
@@ -317,8 +317,8 @@ import ItemShipLogo2 from './assets/item-ship-logo2.svg';
 <template>
   <el-config-provider namespace="ep">
     <div class="flex">
-      <div style="width: 360px;height: 100vh;">
-        <ItemMenu style="height: 100%" type="item_ship" :data="menuList" :applications="applications"
+      <div style="height: 100vh;">
+        <ItemMenu style="height: 100%" type="item_ship" position="8" :data="menuList" :applications="applications"
                   :default-active="route.path"
                   default-application-active="item_ship"
                   @selectApplication="selectApplication" @more="more"

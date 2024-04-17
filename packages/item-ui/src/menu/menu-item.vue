@@ -7,18 +7,21 @@
       <!-- <i :class="'el-icon-' + data.icon"></i> -->
       <!-- <i-ep-add-location /> -->
       <el-icon :size="20">
-<!--        <Location/>-->
-<!--        <i-ep-add-location />-->
-        <Icon :icon="`mdi:${data.icon}`" />
+        <!--        <Location/>-->
+        <!--        <i-ep-add-location />-->
+        <!--        <Icon :icon="data.icon" />-->
+        <i class="iconfont" :class="data.icon"></i>
       </el-icon>
       <span>{{ data.title }}</span>
     </template>
-    <menu-item v-for="child in data.children" :active-menu="activeMenu" :collapse="collapse"  className="unis-sub-menu__item" :data="child"></menu-item>
+    <menu-item v-for="child in data.children" :active-menu="activeMenu" :collapse="collapse"
+               className="unis-sub-menu__item" :data="child"></menu-item>
   </el-sub-menu>
   <el-menu-item :class="className" v-else :index="data.path">
     <el-icon :size="20">
-<!--      <i-ep-apple></i-ep-apple>-->
-      <Icon :icon="`mdi:${data.icon}`" />
+      <!--      <i-ep-apple></i-ep-apple>-->
+      <!--      <Icon :icon="data.icon" />-->
+      <i class="iconfont" :class="data.icon"></i>
     </el-icon>
     <span>{{ data.title }}</span>
   </el-menu-item>
@@ -28,7 +31,8 @@
 import {MenuItem as MenuItemType} from "./types"
 import Minus from "./minus.vue"
 import Plus from "./plus.vue"
-import { Icon } from '@iconify/vue';
+// import { Icon } from '@iconify/vue';
+
 // import {
 //   Location,
 // } from '@element-plus/icons-vue'
@@ -42,6 +46,21 @@ defineProps<{
 </script>
 
 <style lang="scss">
+.unis-item_menu--popper {
+  --el-popover-bg-color: #1d1e1f !important;
+  --el-bg-color-overlay: #1d1e1f !important;
+  --el-popover-font-size: 14px;
+  --el-popover-border-color: #363637 !important;
+  --el-popover-padding: 12px;
+  --el-popover-padding-large: 18px 20px !important;
+  --el-popover-title-font-size: 16px;
+  --el-popover-title-text-color: #E5EAF3 !important;
+  --el-popover-border-radius: 4px;
+
+}
+:deep(.el-popper.unis-item_menu--popper) {
+  background: var(--el-bg-color-overlay) !important;
+}
 .common-title {
   font-family: 'Helvetica Neue';
   font-weight: 500;
@@ -53,6 +72,7 @@ defineProps<{
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 .el-menu-item:hover {
   color: var(--el-menu-hover-text-color);
 }
@@ -60,30 +80,35 @@ defineProps<{
 .el-sub-menu__title:hover {
   color: var(--el-menu-hover-text-color);
 }
-.unis-sub-menu__item{
-  .el-sub-menu__title{
+
+.unis-sub-menu__item {
+  .el-sub-menu__title {
     @apply common-title;
   }
 }
-.unis-sub-menu_item{
-  .el-sub-menu__title{
+
+.unis-sub-menu_item {
+  .el-sub-menu__title {
     @apply common-title;
   }
 }
-.unis-sub-menu__item{
-  @apply common-title;
-}
-.unis-menu_item{
+
+.unis-sub-menu__item {
   @apply common-title;
 }
 
-.el-sub-menu.is-active{
+.unis-menu_item {
+  @apply common-title;
+}
+
+.el-sub-menu.is-active {
   .el-sub-menu__title:hover {
     color: #fff;
   }
 }
-.el-menu-item.is-active{
-  color:#fff;
+
+.el-menu-item.is-active {
+  color: #fff;
 }
 </style>
 

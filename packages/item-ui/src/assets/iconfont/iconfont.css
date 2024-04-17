@@ -1,0 +1,79 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 4511372 */
+  src: url('iconfont.woff2?t=1713324906191') format('woff2'),
+       url('iconfont.woff?t=1713324906191') format('woff'),
+       url('iconfont.ttf?t=1713324906191') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ship-settings:before {
+  content: "\e604";
+}
+
+.ship-products:before {
+  content: "\e605";
+}
+
+.ship-user:before {
+  content: "\e606";
+}
+
+.ship-shipments:before {
+  content: "\e607";
+}
+
+.ship-support-ticket:before {
+  content: "\e608";
+}
+
+.ship-orders:before {
+  content: "\e609";
+}
+
+.ship-report:before {
+  content: "\e60a";
+}
+
+.ship-transaction:before {
+  content: "\e60b";
+}
+
+.ship-feedback:before {
+  content: "\e603";
+}
+
+.ship-mapping:before {
+  content: "\e60c";
+}
+
+.ship-download:before {
+  content: "\e602";
+}
+
+.ship-account:before {
+  content: "\e60d";
+}
+
+.ship-channels:before {
+  content: "\e60e";
+}
+
+.ship-help:before {
+  content: "\e60f";
+}
+
+.ship-api:before {
+  content: "\e610";
+}
+
+.ship-dashboard:before {
+  content: "\e601";
+}
+
