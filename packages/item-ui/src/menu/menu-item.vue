@@ -212,6 +212,12 @@ defineProps<{
   }
 }
 
+#unis-menu-sub--container.is-collapse {
+  :deep(.el-sub-menu__icon-arrow){
+    z-index:-100;
+  }
+}
+
 // collapse
 #unis-menu-sub--container.is-active.is-collapse {
   :deep(.el-sub-menu__title) {
@@ -223,7 +229,7 @@ defineProps<{
       position: absolute;
       z-index: -1;
       padding: 0;
-      margin: 10px 14px;
+      margin: 7px 14px;
       border-radius: 8px;
       background-color: rgb(51, 56, 71);
       top: 0;
