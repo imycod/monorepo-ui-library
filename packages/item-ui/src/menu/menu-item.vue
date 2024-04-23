@@ -1,8 +1,6 @@
 <template>
-  <el-sub-menu class="unis-sub-menu_item" :class="collapse ? `is-collapse` :'' " id="unis-menu-sub--container"
-               :expand-close-icon="Plus"
-               :expand-open-icon="Minus"
-               v-if="data.children" :index="data.path">
+  <el-sub-menu class="unis-sub-menu_item" :class="collapse ? `is-collapse` : ''" id="unis-menu-sub--container"
+    :expand-close-icon="Plus" :expand-open-icon="Minus" v-if="data.children" :index="data.path">
     <template #title>
       <!-- <i :class="'el-icon-' + data.icon"></i> -->
       <!-- <i-ep-add-location /> -->
@@ -10,28 +8,28 @@
         <i class="iconfont" v-if="data._isIconFont" :class="data.icon"></i>
         <!--        <Location/>-->
         <!--        <i-ep-add-location />-->
-        <Icon :icon="data.icon" v-else/>
+        <Icon :icon="data.icon" v-else />
       </el-icon>
       <span>{{ data.title }}</span>
     </template>
     <menu-item v-for="child in data.children" :active-menu="activeMenu" :collapse="collapse"
-               className="unis-sub-menu__item" :data="child"></menu-item>
+      className="unis-sub-menu__item" :data="child"></menu-item>
   </el-sub-menu>
   <el-menu-item :class="className" v-else :index="data.path">
     <el-icon :size="20">
       <i v-if="data._isIconFont" :class="data.icon"></i>
       <!--      <i-ep-apple></i-ep-apple>-->
-      <Icon :icon="data.icon" v-else/>
+      <Icon :icon="data.icon" v-else />
     </el-icon>
     <span>{{ data.title }}</span>
   </el-menu-item>
 </template>
 
 <script setup lang="ts">
-import {MenuItem as MenuItemType} from "./types"
+import { MenuItem as MenuItemType } from "./types"
 import Minus from "./minus.vue"
 import Plus from "./plus.vue"
-import {Icon} from '@iconify/vue';
+import { Icon } from '@iconify/vue';
 
 // import {
 //   Location,
@@ -50,7 +48,8 @@ defineProps<{
   background: #1d1e1f !important;
   background-color: #1d1e1f !important;
 
-  .el-menu-item:hover, .el-sub-menu__title:hover {
+  .el-menu-item:hover,
+  .el-sub-menu__title:hover {
     color: var(--item-ship-menu-hover-text-color) !important;
     background-color: var(--item-ship-bg-color);
   }
@@ -181,9 +180,7 @@ defineProps<{
   }
 }
 
-.unis-sub-menu_item.is-active {
-
-}
+.unis-sub-menu_item.is-active {}
 
 .unis-sub-menu_item.is-active.is-opened {
   :deep(.el-sub-menu__title) {
@@ -213,8 +210,8 @@ defineProps<{
 }
 
 #unis-menu-sub--container.is-collapse {
-  :deep(.el-sub-menu__icon-arrow){
-    z-index:-100;
+  :deep(.el-sub-menu__icon-arrow) {
+    z-index: -100;
   }
 }
 

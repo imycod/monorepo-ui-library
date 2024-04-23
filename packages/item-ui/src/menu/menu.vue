@@ -50,7 +50,7 @@
         </a>
       </div>
       <div class="unis-sys-container overflow-y-auto flex-auto px-[24px]" style="padding: 0px 24px;"
-        v-loading.body="!applicationList.length" element-loading-text="loading...">
+        v-loading.body="applicationList.length" element-loading-text="loading...">
         <div v-for="(item, index) in applicationList" :key="index" v-if="isEnable(item)"
           @click="() => emit('selectApplication', item)" :title="item.name" class="flex items-center">
           <div class="flex-column w-full app-card--container">
