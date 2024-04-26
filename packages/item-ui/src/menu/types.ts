@@ -3,6 +3,8 @@ export interface MenuItem {
   icon: string;
   index: string;
   path: string;
+  special?:boolean;
+  scrollY?:number;
   _isIconFont: boolean;
   children?: MenuItem[];
 }

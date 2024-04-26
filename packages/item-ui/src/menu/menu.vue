@@ -2,7 +2,7 @@
   <!--  <el-config-provider namespace="ep">-->
   <div id="unis-menu-panel--container" :class="collapseClass">
     <el-menu popper-class="unis-item_menu--popper" v-if="!moreSysOpen" id="unis-menu--container"
-             class="unis-item_menu h-full" @select="select" router :default-active="defaultActive"
+             class="unis-item_menu h-full" @select="select" :router="false" :default-active="defaultActive"
              :collapse="isCollapsed"
              @open="handleOpen" @close="handleClose" unique-opened>
       <div :class="!isCollapsed ? 'flex justify-between' : ''">
@@ -31,11 +31,15 @@
       <div class="body--container flex flex-col justify-between"
            :style="{ height: isCollapsed ? 'calc(90% - 90px)' : '90%' }">
         <div>
-          <menu-item v-for="menu in topMenu" :data="menu" :activeMenu="activeMenu" :collapse="isCollapsed"
+          <menu-item @handleMenuClick="handleMenuClick"
+                     @handleIconClick="handleIconClick" v-for="menu in topMenu" :data="menu" :activeMenu="activeMenu"
+                     :collapse="isCollapsed"
                      className="unis-menu_item"></menu-item>
         </div>
         <div>
-          <menu-item v-for="menu in bottomMenu" :data="menu" :activeMenu="activeMenu" :collapse="isCollapsed"
+          <menu-item @handleMenuClick="handleMenuClick"
+                     @handleIconClick="handleIconClick" v-for="menu in bottomMenu" :data="menu" :activeMenu="activeMenu"
+                     :collapse="isCollapsed"
                      className="unis-menu_item"></menu-item>
         </div>
       </div>
@@ -106,7 +110,7 @@ const props = withDefaults(defineProps<{
   position: [string, number];
 }>(), {collapse: false, data: [], defaultActive: '1'});
 
-const emit = defineEmits(['selectApplication', 'more', 'sizeChange', 'collapse', 'open', 'close'])
+const emit = defineEmits(['selectApplication', 'more', 'sizeChange', 'collapse', 'open', 'close', 'handleMenuClick', 'handleIconClick'])
 const {moreSysOpen, applicationLoading, changeMoreSysOpen} = createMoreSystem()
 const {isCollapsed, openedAccordion, toggleAccordion, toggleSlimMode} = createMenus(props)
 const {isLessMinScreen, removeCoverLayer} = createMask(isCollapsed)
@@ -162,7 +166,10 @@ function splitMenuByPosition(menuList) {
 
 function addExtraParameters(menuList) {
   menuList.forEach(menu => {
-    menu._isIconFont = menu.icon.includes('iconfont')
+    if (menu.children) {
+      addExtraParameters(menu.children)
+    }
+    menu._isIconFont = menu.icon?.includes('iconfont')
   })
 }
 
@@ -203,6 +210,12 @@ const handleOpen = (key: string, keyPath: string[]) => {
 const handleClose = (key: string, keyPath: string[]) => {
   emit('close', key, keyPath);
 }
+const handleMenuClick = (data) => {
+  emit('handleMenuClick', data)
+}
+const handleIconClick = (data) => {
+  emit('handleIconClick', data)
+}
 
 const onToggleAccordion = (menuTitle) => {
   toggleAccordion(menuTitle)
@@ -233,6 +246,7 @@ const checkWindowSize = () => {
 };
 
 watch(() => props.data, (v) => {
+  console.log('menu.children---', v)
   initMenu(v)
 }, {
   immediate: true,

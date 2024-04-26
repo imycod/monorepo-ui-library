@@ -1,9 +1,9 @@
 <script setup lang="ts">
 // @ts-nocheck
 import {ref} from "vue"
-import { useRouter } from "vue-router";
+import {useRouter} from "vue-router";
 
-import { ItemMenu } from "@unisc-ui/item";
+import {ItemMenu} from "@unisc-ui/item";
 import "@unisc-ui/item/dist/style.css";
 
 const dir = 'unis'
@@ -44,10 +44,15 @@ menuList.value = [
     index: '6',
     title: 'Shipments',
     icon: 'iconfont ship-shipments',
+    special: true,
+    scrollY: 120,
     path: `/${dir}/shipments`,
     children: [
       {
         index: '6-1',
+        icon: 'iconfont ship-shipments',
+        icon1: 'iconfont ship-shipments',
+        iconActive: false,
         title: 'Fulfillments',
         path: `/${dir}/shipments/fulfillments`,
       },
@@ -279,112 +284,112 @@ const applications = [
     "description": "Transload Management",
     "sort": 15
   }
-].map(app => ({ ...app, status: 'ENABLE' }))
+].map(app => ({...app, status: 'ENABLE'}))
 
-
-setTimeout(() => {
-  menuList.value = [
-    {
-      index: '1',
-      title: 'Dashboard',
-      path: `/${dir}/dashboard`,
-      icon: 'iconfont ship-dashboard',
-    },
-    {
-      index: '2',
-      title: 'Channels',
-      path: `/${dir}/channels`,
-      icon: 'iconfont ship-channels',
-    },
-    {
-      index: '3',
-      title: 'Orders',
-      path: `/${dir}/orders`,
-      icon: 'iconfont ship-orders',
-    },
-    {
-      index: '4',
-      title: 'Mapping',
-      path: `/${dir}/mapping`,
-      icon: 'iconfont ship-mapping',
-    },
-    {
-      index: '5',
-      title: 'Products',
-      path: `/${dir}/products`,
-      icon: 'iconfont ship-products',
-    },
-    {
-      index: '6',
-      title: 'Shipments',
-      icon: 'iconfont ship-shipments',
-      path: `/${dir}/shipments`,
-      children: [
-        {
-          index: '6-1',
-          title: 'Fulfillments',
-          path: `/${dir}/shipments/fulfillments`,
-        },
-        {
-          index: '6-2',
-          title: 'End of Day',
-          path: `/${dir}/shipments/end-of-day`,
-        },
-        {
-          index: '6-3',
-          title: 'Batches',
-          path: `/${dir}/shipments/batches`,
-        },
-      ],
-    },
-    {
-      index: '7',
-      title: 'Transaction',
-      icon: 'iconfont ship-transaction',
-      path: `/${dir}/transaction`,
-      children: [
-        {
-          index: '7-1',
-          title: 'Label History',
-          path: `/${dir}/transaction/label-history`,
-        },
-        {
-          index: '7-2',
-          title: 'Payment History',
-          path: `/${dir}/transaction/payment-history`,
-        },
-        {
-          index: '7-3',
-          title: 'Statement',
-          path: `/${dir}/transaction/statement`,
-        },
-      ],
-    },
-    {
-      index: '8',
-      title: 'User',
-      icon: 'iconfont ship-user',
-      path: `/${dir}/user`,
-      children: [
-        {
-          index: '8-1',
-          title: 'User',
-          path: `/${dir}/user/user`,
-        },
-        {
-          index: '8-2',
-          title: 'Role Management',
-          path: `/${dir}/user/role-management`,
-        },
-        {
-          index: '8-3',
-          title: 'Role Permissions',
-          path: `/${dir}/user/role-permissions`,
-        },
-      ],
-    },
-  ]
-}, 3000)
+//
+// setTimeout(() => {
+//   menuList.value = [
+//     {
+//       index: '1',
+//       title: 'Dashboard',
+//       path: `/${dir}/dashboard`,
+//       icon: 'iconfont ship-dashboard',
+//     },
+//     {
+//       index: '2',
+//       title: 'Channels',
+//       path: `/${dir}/channels`,
+//       icon: 'iconfont ship-channels',
+//     },
+//     {
+//       index: '3',
+//       title: 'Orders',
+//       path: `/${dir}/orders`,
+//       icon: 'iconfont ship-orders',
+//     },
+//     {
+//       index: '4',
+//       title: 'Mapping',
+//       path: `/${dir}/mapping`,
+//       icon: 'iconfont ship-mapping',
+//     },
+//     {
+//       index: '5',
+//       title: 'Products',
+//       path: `/${dir}/products`,
+//       icon: 'iconfont ship-products',
+//     },
+//     {
+//       index: '6',
+//       title: 'Shipments',
+//       icon: 'iconfont ship-shipments',
+//       path: `/${dir}/shipments`,
+//       children: [
+//         {
+//           index: '6-1',
+//           title: 'Fulfillments',
+//           path: `/${dir}/shipments/fulfillments`,
+//         },
+//         {
+//           index: '6-2',
+//           title: 'End of Day',
+//           path: `/${dir}/shipments/end-of-day`,
+//         },
+//         {
+//           index: '6-3',
+//           title: 'Batches',
+//           path: `/${dir}/shipments/batches`,
+//         },
+//       ],
+//     },
+//     {
+//       index: '7',
+//       title: 'Transaction',
+//       icon: 'iconfont ship-transaction',
+//       path: `/${dir}/transaction`,
+//       children: [
+//         {
+//           index: '7-1',
+//           title: 'Label History',
+//           path: `/${dir}/transaction/label-history`,
+//         },
+//         {
+//           index: '7-2',
+//           title: 'Payment History',
+//           path: `/${dir}/transaction/payment-history`,
+//         },
+//         {
+//           index: '7-3',
+//           title: 'Statement',
+//           path: `/${dir}/transaction/statement`,
+//         },
+//       ],
+//     },
+//     {
+//       index: '8',
+//       title: 'User',
+//       icon: 'iconfont ship-user',
+//       path: `/${dir}/user`,
+//       children: [
+//         {
+//           index: '8-1',
+//           title: 'User',
+//           path: `/${dir}/user/user`,
+//         },
+//         {
+//           index: '8-2',
+//           title: 'Role Management',
+//           path: `/${dir}/user/role-management`,
+//         },
+//         {
+//           index: '8-3',
+//           title: 'Role Permissions',
+//           path: `/${dir}/user/role-permissions`,
+//         },
+//       ],
+//     },
+//   ]
+// }, 3000)
 
 const route = useRouter()
 
@@ -396,8 +401,8 @@ function more(t) {
   console.log('more---', t);
 }
 
-function sizeChange({ isCollapse, isLessMinScreen }) {
-  console.log('sizeChange---', { isCollapse, isLessMinScreen });
+function sizeChange({isCollapse, isLessMinScreen}) {
+  console.log('sizeChange---', {isCollapse, isLessMinScreen});
 }
 
 function collapse(t) {
@@ -408,18 +413,29 @@ function close(key, keyPath) {
   console.log('close----', key, keyPath);
 }
 
-function open(key, keyPath) {
-  console.log('open----', key, keyPath);
-}
+// function open(key, keyPath) {
+//   console.log('open----', key, keyPath);
+//   router.push(key)
+// }
 
 
-import { useDark, useToggle } from '@vueuse/core'
+import {useDark, useToggle} from '@vueuse/core'
 
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
 
 import ItemShipLogo from './assets/item-ship-logo.svg';
 import ItemShipLogo2 from './assets/item-ship-logo2.svg';
+
+const router = useRouter()
+
+function handleMenuClick(data) {
+  console.log('handleMenuClick---',data)
+}
+
+function handleIconClick(data) {
+  console.log('handleIconClick---',data)
+}
 </script>
 
 <template>
@@ -427,8 +443,10 @@ import ItemShipLogo2 from './assets/item-ship-logo2.svg';
     <div class="flex">
       <div style="height: 100vh;">
         <ItemMenu style="height: 100%" type="item_ship" position="8" :data="menuList" :applications="applications"
-          :default-active="route.path" default-application-active="item_ship" @selectApplication="selectApplication"
-          @more="more" @sizeChange="sizeChange" @collapse="collapse" @open="open" @close="close">
+                  :default-active="route.path" default-application-active="item_ship"
+                  @selectApplication="selectApplication"
+                  @more="more" @sizeChange="sizeChange" @collapse="collapse" @open="open" @close="close"
+                  @handleMenuClick="handleMenuClick" @handleIconClick="handleIconClick">
           <template #main-logo>
             <!--            <ItemShipLogo></ItemShipLogo>-->
             <img src="./assets/item-ship-logo.svg" alt="">
@@ -442,8 +460,8 @@ import ItemShipLogo2 from './assets/item-ship-logo2.svg';
       <div>
         <el-button type="primary">aa</el-button>
         <button class="rounded text-white bg-purple-500 px-5 py-2 hover:shadow-blue-100" @click="toggleDark()">mode {{
-          isDark
-        }}
+            isDark
+          }}
         </button>
       </div>
     </div>
