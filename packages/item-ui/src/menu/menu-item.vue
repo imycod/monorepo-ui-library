@@ -11,14 +11,16 @@
       <span>{{ data.title }}</span>
     </template>
     <div :style="specialStyle(data)">
-      <menu-item @handleMenuClick="handleMenuClick" @handleIconClick="handleIconClick" v-for="child in data.children" :active-menu="activeMenu"
+      <menu-item @handleMenuClick="handleMenuClick" @handleIconClick="handleIconClick" v-for="child in data.children"
+                 :active-menu="activeMenu"
                  :collapse="collapse"
                  className="unis-sub-menu__item" :data="child"></menu-item>
     </div>
   </el-sub-menu>
   <el-menu-item @click="handleMenuClick(data)" :class="className" v-else :index="data.path">
     <el-icon :size="20">
-      <i v-if="data._isIconFont" @click.stop="handleIconClick(data)" :class="!data.iconActive ? data.icon : data.activeIcon"></i>
+      <i v-if="data._isIconFont" @click.stop="handleIconClick(data)"
+         :class="!data.iconActive ? data.icon : data.activeIcon"></i>
       <Icon :icon="data.icon" v-else/>
     </el-icon>
     <span>{{ data.title }}</span>
@@ -48,18 +50,18 @@ const specialStyle = computed(() => {
     return data.special ? {
       'height': data.scrollY + 'px',
       'overflow-y': 'auto'
-    } : null;
+    } : {} as { height: string; 'overflow-y': string };
   }
 })
 
 
 const emit = defineEmits(['handleMenuClick', 'handleIconClick'])
 
-function handleMenuClick(data:MenuItemType) {
+function handleMenuClick(data: MenuItemType) {
   emit('handleMenuClick', data)
 }
 
-function handleIconClick(data:MenuItemType) {
+function handleIconClick(data: MenuItemType) {
   emit('handleIconClick', data)
 }
 </script>
