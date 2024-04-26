@@ -55,11 +55,11 @@ const specialStyle = computed(() => {
 
 const emit = defineEmits(['handleMenuClick', 'handleIconClick'])
 
-function handleMenuClick(data) {
+function handleMenuClick(data:MenuItemType) {
   emit('handleMenuClick', data)
 }
 
-function handleIconClick(data) {
+function handleIconClick(data:MenuItemType) {
   emit('handleIconClick', data)
 }
 </script>
