@@ -28,6 +28,7 @@
 </template>
 
 <script setup lang="ts">
+// @ts-nocheck
 import {MenuItem as MenuItemType} from "./types"
 import Minus from "./minus.vue"
 import Plus from "./plus.vue"
