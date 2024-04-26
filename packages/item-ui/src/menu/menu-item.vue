@@ -1,27 +1,23 @@
 <template>
-  <el-sub-menu class="unis-sub-menu_item" :class="[collapse ? `is-collapse` : null, data.special?'special':null]"
-               id="unis-menu-sub--container"
-               :expand-close-icon="Plus" :expand-open-icon="Minus" v-if="data.children"
-               :index="data.path">
+  <el-sub-menu class="unis-sub-menu_item" :class="[collapse ? `is-collapse` : null, data.special ? 'special' : null]"
+    id="unis-menu-sub--container" :expand-close-icon="Plus" :expand-open-icon="Minus" v-if="data.children"
+    :index="data.path">
     <template #title>
       <el-icon :size="20">
         <i class="iconfont" v-if="data._isIconFont" :class="data.icon"></i>
-        <Icon :icon="data.icon" v-else/>
+        <Icon :icon="data.icon" v-else />
       </el-icon>
       <span>{{ data.title }}</span>
     </template>
     <div :style="specialStyle(data)">
-      <menu-item @handleMenuClick="handleMenuClick" @handleIconClick="handleIconClick" v-for="child in data.children"
-                 :active-menu="activeMenu"
-                 :collapse="collapse"
-                 className="unis-sub-menu__item" :data="child"></menu-item>
+      <menu-item v-for="child in data.children"
+        :active-menu="activeMenu" :collapse="collapse" className="unis-sub-menu__item" :data="child"></menu-item>
     </div>
   </el-sub-menu>
   <el-menu-item @click="handleMenuClick(data)" :class="className" v-else :index="data.path">
-    <el-icon :size="20">
-      <i v-if="data._isIconFont" @click.stop="handleIconClick(data)"
-         :class="!data.iconActive ? data.icon : data.activeIcon"></i>
-      <Icon :icon="data.icon" v-else/>
+    <el-icon :size="20" @click.stop="handleIconClick(data)">
+      <i v-if="data._isIconFont" :class="!data.iconActive ? data.icon : data.activeIcon"></i>
+      <Icon :icon="!data.iconActive ? data.icon : data.activeIcon" v-else />
     </el-icon>
     <span>{{ data.title }}</span>
   </el-menu-item>
@@ -29,12 +25,11 @@
 
 <script setup lang="ts">
 // @ts-nocheck
-import {MenuItem as MenuItemType} from "./types"
+import { MenuItem as MenuItemType } from "./types"
 import Minus from "./minus.vue"
 import Plus from "./plus.vue"
-import {Icon} from '@iconify/vue';
-
-
+import { Icon } from '@iconify/vue';
+import mitt from "../utils/mitt"
 // import {
 //   Location,
 // } from '@element-plus/icons-vue'
@@ -59,11 +54,10 @@ const specialStyle = computed(() => {
 const emit = defineEmits(['handleMenuClick', 'handleIconClick'])
 
 function handleMenuClick(data: MenuItemType) {
-  emit('handleMenuClick', data)
+  mitt.emit('handleMenuClick', data)
 }
-
 function handleIconClick(data: MenuItemType) {
-  emit('handleIconClick', data)
+  mitt.emit('handleIconClick', data)
 }
 </script>
 
@@ -85,7 +79,8 @@ function handleIconClick(data: MenuItemType) {
       width: 1px;
     }
 
-    span, .el-icon {
+    span,
+    .el-icon {
       color: #fff;
     }
 
@@ -232,8 +227,7 @@ function handleIconClick(data: MenuItemType) {
   }
 }
 
-.unis-sub-menu_item.is-active {
-}
+.unis-sub-menu_item.is-active {}
 
 .unis-sub-menu_item.is-active.is-opened {
   :deep(.el-sub-menu__title) {

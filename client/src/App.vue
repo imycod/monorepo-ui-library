@@ -50,9 +50,9 @@ menuList.value = [
     children: [
       {
         index: '6-1',
-        icon: 'iconfont ship-shipments',
-        activeIcon: 'iconfont ship-transaction',
-        iconActive: false,
+        icon: 'fluent:star-28-regular',
+        activeIcon: 'tabler:star-filled',
+        iconActive: true,
         title: 'Fulfillments',
         path: `/${dir}/shipments/fulfillments`,
       },

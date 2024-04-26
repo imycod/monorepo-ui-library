@@ -1,4 +1,4 @@
-import "./assets/iconfont/iconfont.css";
+import './assets/iconfont/iconfont.css';
 import './assets/styles/index.css';
 // import './assets/styles/element/reset.scss'
 // import { App } from 'vue';
