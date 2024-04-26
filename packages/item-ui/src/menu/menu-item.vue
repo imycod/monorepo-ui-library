@@ -18,7 +18,7 @@
   </el-sub-menu>
   <el-menu-item @click="handleMenuClick(data)" :class="className" v-else :index="data.path">
     <el-icon :size="20">
-      <i v-if="data._isIconFont" @click.stop="handleIconClick(data)" :class="data.icon"></i>
+      <i v-if="data._isIconFont" @click.stop="handleIconClick(data)" :class="!data.iconActive ? data.icon : data.activeIcon"></i>
       <Icon :icon="data.icon" v-else/>
     </el-icon>
     <span>{{ data.title }}</span>

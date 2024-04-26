@@ -51,7 +51,7 @@ menuList.value = [
       {
         index: '6-1',
         icon: 'iconfont ship-shipments',
-        icon1: 'iconfont ship-shipments',
+        activeIcon: 'iconfont ship-transaction',
         iconActive: false,
         title: 'Fulfillments',
         path: `/${dir}/shipments/fulfillments`,
@@ -435,6 +435,7 @@ function handleMenuClick(data) {
 
 function handleIconClick(data) {
   console.log('handleIconClick---',data)
+  data.iconActive = !data.iconActive
 }
 </script>
 
