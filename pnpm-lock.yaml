@@ -1012,7 +1012,7 @@ packages:
       vite: ^5.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 5.2.8(sass@1.75.0)
+      vite: 5.2.8(sass@1.72.0)
       vue: 3.4.21(typescript@5.4.5)
     dev: true
 
@@ -3833,7 +3833,7 @@ packages:
     dependencies:
       acorn: 8.11.3
       chokidar: 3.6.0
-      vite: 5.2.8(sass@1.75.0)
+      vite: 5.2.8(sass@1.72.0)
       webpack-sources: 3.2.3
       webpack-virtual-modules: 0.4.6
     dev: true

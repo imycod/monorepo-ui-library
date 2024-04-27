@@ -1,40 +1,45 @@
 <template>
   <el-sub-menu class="unis-sub-menu_item" :class="[collapse ? `is-collapse` : null, data.special ? 'special' : null]"
-    id="unis-menu-sub--container" :expand-close-icon="Plus" :expand-open-icon="Minus" v-if="data.children"
-    :index="data.path">
+               id="unis-menu-sub--container" :expand-close-icon="Plus" :expand-open-icon="Minus" v-if="data.children"
+               :index="data.path">
     <template #title>
       <el-icon :size="20">
         <i class="iconfont" v-if="data._isIconFont" :class="data.icon"></i>
-        <Icon :icon="data.icon" v-else />
+        <Icon :icon="data.icon" v-else/>
       </el-icon>
-      <span>{{ data.title }}</span>
+      <span>{{ data.title }} </span>
     </template>
     <div :style="specialStyle(data)">
       <menu-item v-for="child in data.children"
-        :active-menu="activeMenu" :collapse="collapse" className="unis-sub-menu__item" :data="child"></menu-item>
+                 :active-menu="activeMenu" :collapse="collapse" :className="`unis-sub-menu__item ${data.special ? 'special':''}`"
+                 :data="child"></menu-item>
     </div>
   </el-sub-menu>
   <el-menu-item @click="handleMenuClick(data)" :class="className" v-else :index="data.path">
-    <el-icon :size="20" @click.stop="handleIconClick(data)">
+    <el-icon :size="20" v-if="className.includes('special')" @click.stop="handleIconClick(data)">
       <i v-if="data._isIconFont" :class="!data.iconActive ? data.icon : data.activeIcon"></i>
-      <Icon :icon="!data.iconActive ? data.icon : data.activeIcon" v-else />
+      <Icon :icon="!data.iconActive ? data.icon : data.activeIcon" v-else/>
     </el-icon>
-    <span>{{ data.title }}</span>
+    <el-icon :size="20" v-else>
+      <i v-if="data._isIconFont" :class="!data.iconActive ? data.icon : data.activeIcon"></i>
+      <Icon :icon="!data.iconActive ? data.icon : data.activeIcon" v-else/>
+    </el-icon>
+    <span>{{ data.title }} </span>
   </el-menu-item>
 </template>
 
 <script setup lang="ts">
 // @ts-nocheck
-import { MenuItem as MenuItemType } from "./types"
+import {MenuItem as MenuItemType} from "./types"
 import Minus from "./minus.vue"
 import Plus from "./plus.vue"
-import { Icon } from '@iconify/vue';
+import {Icon} from '@iconify/vue';
 import mitt from "../utils/mitt"
 // import {
 //   Location,
 // } from '@element-plus/icons-vue'
 
-defineProps<{
+const props = defineProps<{
   data: MenuItemType;
   activeMenu: MenuItemType;
   className: string;
@@ -50,12 +55,10 @@ const specialStyle = computed(() => {
   }
 })
 
-
-const emit = defineEmits(['handleMenuClick', 'handleIconClick'])
-
 function handleMenuClick(data: MenuItemType) {
   mitt.emit('handleMenuClick', data)
 }
+
 function handleIconClick(data: MenuItemType) {
   mitt.emit('handleIconClick', data)
 }
@@ -227,7 +230,8 @@ function handleIconClick(data: MenuItemType) {
   }
 }
 
-.unis-sub-menu_item.is-active {}
+.unis-sub-menu_item.is-active {
+}
 
 .unis-sub-menu_item.is-active.is-opened {
   :deep(.el-sub-menu__title) {
@@ -275,7 +279,8 @@ function handleIconClick(data: MenuItemType) {
       position: absolute;
       z-index: -1;
       padding: 0;
-      margin: 7px 14px;
+      //margin: 7px 14px;
+      margin: 4px 14px;
       border-radius: 8px;
       background-color: rgb(51, 56, 71);
       top: 0;

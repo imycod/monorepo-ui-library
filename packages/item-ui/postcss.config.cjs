@@ -1,1 +1,6 @@
-module.exports = require("@unisc-ui/tailwind-config/postcss.config.cjs");
+module.exports = {
+	plugins: {
+		tailwindcss: {},
+		autoprefixer: {},
+	},
+}
