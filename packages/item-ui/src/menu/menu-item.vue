@@ -97,7 +97,7 @@ function handleIconClick(data: MenuItemType) {
 
 
 .common-title {
-  font-family: 'Helvetica Neue';
+  font-family: 'Helvetica';
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
@@ -142,7 +142,7 @@ function handleIconClick(data: MenuItemType) {
 
 .unis-sub-menu__item {
   .el-sub-menu__title {
-    font-family: 'Helvetica Neue';
+    font-family: 'Helvetica';
     font-weight: 500;
     font-size: 16px !important;
     line-height: 20px;
@@ -156,7 +156,7 @@ function handleIconClick(data: MenuItemType) {
 
 .unis-sub-menu_item {
   .el-sub-menu__title {
-    font-family: 'Helvetica Neue';
+    font-family: 'Helvetica';
     font-weight: 500;
     font-size: 16px !important;
     line-height: 20px;
@@ -169,7 +169,7 @@ function handleIconClick(data: MenuItemType) {
 }
 
 .unis-sub-menu__item {
-  font-family: 'Helvetica Neue';
+  font-family: 'Helvetica';
   font-weight: 500;
   font-size: 16px !important;
   line-height: 20px;
@@ -181,7 +181,7 @@ function handleIconClick(data: MenuItemType) {
 }
 
 .unis-menu_item {
-  font-family: 'Helvetica Neue';
+  font-family: 'Helvetica';
   font-weight: 500;
   font-size: 16px !important;
   line-height: 20px;

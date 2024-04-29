@@ -352,7 +352,7 @@ onUnmounted(() => {
           padding-top: 0px;
           padding-bottom: 3px;
           margin-left: 43px;
-          font-family: 'Helvetica Neue';
+          font-family: 'Helvetica';
           font-size: 12px;
         }
       }
@@ -369,7 +369,6 @@ onUnmounted(() => {
       height: 8px;
       background-color: #f5f5f5;
     }
-
     ::-webkit-scrollbar-track {
       -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
       border-radius: 10px;
@@ -401,7 +400,7 @@ onUnmounted(() => {
 //:not(.el-menu--collapse)
 #unis-menu--container {
   //:deep(.el-menu-item) {
-  //  font-family: 'Helvetica Neue';
+  //  font-family: 'Helvetica';
   //  font-weight: 500;
   //  font-size: 16px;
   //  color: var(--el-menu-active-color);
