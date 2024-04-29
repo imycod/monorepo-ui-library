@@ -71,7 +71,7 @@ defineProps<{
 
 
 .common-title {
-  font-family: 'Helvetica Neue';
+  font-family: 'Helvetica';
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
@@ -82,23 +82,18 @@ defineProps<{
   white-space: nowrap;
 }
 
-.unis-menu_item:hover {
-  color: #c8a0ff;
+.el-menu-item:hover {
+  color: var(--el-menu-hover-text-color);
 }
 
-.unisc-sub-menu_item {
-  .el-sub-menu__title:hover {
-    color: #bc8bf8;
-  }
+.el-sub-menu__title:hover {
+  color: var(--el-menu-hover-text-color);
 }
 
 .unis-sub-menu__item {
-  background: none !important;
-
   .el-sub-menu__title {
-    font-family: 'Helvetica Neue';
-    font-weight: 500 !important;
-    color: #fff !important;
+    font-family: 'Helvetica';
+    font-weight: 500;
     font-size: 16px !important;
     line-height: 20px;
     font-weight: 500;
@@ -110,14 +105,9 @@ defineProps<{
 }
 
 .unis-sub-menu_item {
-  .el-menu {
-    background-color: #21232B !important;
-  }
-
   .el-sub-menu__title {
-    color: #fff !important;
-    font-family: 'Helvetica Neue';
-    font-weight: 500 !important;
+    font-family: 'Helvetica';
+    font-weight: 500;
     font-size: 16px !important;
     line-height: 20px;
     font-weight: 500;
@@ -129,9 +119,8 @@ defineProps<{
 }
 
 .unis-sub-menu__item {
-  font-family: 'Helvetica Neue';
-  font-weight: 500 !important;
-  color: #fff !important;
+  font-family: 'Helvetica';
+  font-weight: 500;
   font-size: 16px !important;
   line-height: 20px;
   font-weight: 500;
@@ -142,24 +131,15 @@ defineProps<{
 }
 
 .unis-menu_item {
-  font-family: 'Helvetica Neue';
-  font-weight: 500 !important;
+  font-family: 'Helvetica';
+  font-weight: 500;
   font-size: 16px !important;
-  color: #fff !important;
   line-height: 20px;
   font-weight: 500;
   height: 3rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-
-  &:hover {
-    background: none !important;
-  }
-
-  &.is-active {
-    background: none !important;
-  }
 }
 
 //.el-sub-menu.is-active {
@@ -176,18 +156,15 @@ defineProps<{
 </style>
 
 <style lang="scss" scoped>
+.unis-menu_item {
+  --el-menu-hover-text-color: #c8a0ff !important;
+}
+
+.unis-sub-menu_item {
+  --el-menu-hover-text-color: #bc8bf8 !important;
+}
+
 #unis-menu-sub--container {
-  background: none !important;
-
-  .el-sub-menu__title {
-    background: none !important;
-  }
-
-  &:hover {
-    background: none !important;
-    color: #bc8bf8;
-  }
-
   :deep(.el-sub-menu__icon-arrow svg) {
     width: 25px;
     height: 25px;
@@ -203,17 +180,7 @@ defineProps<{
   }
 }
 
-.unis-sub-menu_item {
-  .el-sub-menu__title {
-    background: none !important;
-  }
-}
-
-.unis-sub-menu_item.is-active {
-  .el-sub-menu__title {
-    background: none !important;
-  }
-}
+.unis-sub-menu_item.is-active {}
 
 .unis-sub-menu_item.is-active.is-opened {
   :deep(.el-sub-menu__title) {
@@ -238,7 +205,13 @@ defineProps<{
 
 .unis-sub-menu_item.is-active {
   :deep(.unis-sub-menu__item.is-active) {
-    color: #bc8bf8 !important;
+    color: var(--el-menu-hover-text-color) !important;
+  }
+}
+
+#unis-menu-sub--container.is-collapse {
+  :deep(.el-sub-menu__icon-arrow) {
+    z-index: -100;
   }
 }
 
@@ -247,16 +220,15 @@ defineProps<{
   :deep(.el-sub-menu__title) {
     position: relative;
     z-index: 2;
-    background-color: none !important;
 
     &::after {
       content: '';
       position: absolute;
       z-index: -1;
       padding: 0;
-      margin: 6px 14px;
+      margin: 7px 14px;
       border-radius: 8px;
-      background-color: rgb(51, 56, 71) !important;
+      background-color: rgb(51, 56, 71);
       top: 0;
       left: 0;
       width: 35px;
