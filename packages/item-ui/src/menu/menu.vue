@@ -43,7 +43,7 @@
     </el-menu>
     <!-- 3.子系统入口 -->
     <div v-if="moreSysOpen" class="more-sys bg-[var(--Seller-Item-Black-300,_#21232B)] h-full z-10"
-         style="height: 100%;">
+         style="height: 100%;" :id="applicationId">
       <div style="margin-right: 13px;margin-bottom: 16px; width: 347px;height: 32px; display: flex;
     flex-direction: row-reverse;" class="mb-[16px] mr-[13px] flex-initial shrink-0">
         <a @click="more(false)"
@@ -106,7 +106,9 @@ const props = withDefaults(defineProps<{
   defaultActive?: string;
   defaultApplicationActive: string;
   position: [string, number];
-}>(), {collapse: false, data: [], defaultActive: '1'});
+  applicationId: string;
+  isResize: boolean;
+}>(), {collapse: false, data: [], defaultActive: '1',isResize:true});
 
 const emit = defineEmits(['selectApplication', 'more', 'sizeChange', 'collapse', 'open', 'close', 'handleMenuClick', 'handleIconClick'])
 const {moreSysOpen, applicationLoading, changeMoreSysOpen} = createMoreSystem()
@@ -233,6 +235,7 @@ const onToggleSlimMode = () => {
 
 const checkWindowSize = () => {
   const screenWidth = window.innerWidth;
+  if(!props.isResize) return
   if (screenWidth <= 1366) {
     isLessMinScreen.value = true;
     isCollapsed.value = true;
@@ -251,7 +254,6 @@ const checkWindowSize = () => {
 };
 
 watch(() => props.data, (v) => {
-  console.log('menu.children---', v)
   initMenu(v)
 }, {
   immediate: true,

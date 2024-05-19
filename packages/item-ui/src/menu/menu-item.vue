@@ -1,6 +1,6 @@
 <template>
   <el-sub-menu class="unis-sub-menu_item" :class="[collapse ? `is-collapse` : null, data.special ? 'special' : null]"
-               id="unis-menu-sub--container" :expand-close-icon="Plus" :expand-open-icon="Minus" v-if="data.children"
+               :id="data.id" :expand-close-icon="Plus" :expand-open-icon="Minus" v-if="data.children"
                :index="data.path">
     <template #title>
       <el-icon :size="20">
@@ -15,7 +15,7 @@
                  :data="child"></menu-item>
     </div>
   </el-sub-menu>
-  <el-menu-item @click="handleMenuClick(data)" :class="className" v-else :index="data.path">
+  <el-menu-item @click="handleMenuClick(data)" :class="className" v-else :index="data.path" :id="data.id">
     <el-icon :size="20" v-if="className.includes('special')" @click.stop="handleIconClick(data)">
       <i v-if="data._isIconFont" :class="!data.iconActive ? data.icon : data.activeIcon"></i>
       <Icon :icon="!data.iconActive ? data.icon : data.activeIcon" v-else/>
@@ -192,6 +192,13 @@ function handleIconClick(data: MenuItemType) {
   white-space: nowrap;
 }
 
+.unis-sub-menu_item{
+  .unis-sub-menu__item.is-active{
+    span{
+      color: var(--el-menu-hover-text-color);
+    }
+  }
+}
 //.el-sub-menu.is-active {
 .unis-sub-menu_item.is-active {
   .el-sub-menu__title:hover {
@@ -214,7 +221,7 @@ function handleIconClick(data: MenuItemType) {
   --el-menu-hover-text-color: #bc8bf8 !important;
 }
 
-#unis-menu-sub--container {
+.unis-sub-menu_item {
   :deep(.el-sub-menu__icon-arrow svg) {
     width: 25px;
     height: 25px;
@@ -262,14 +269,14 @@ function handleIconClick(data: MenuItemType) {
   }
 }
 
-#unis-menu-sub--container.is-collapse {
+.unis-sub-menu_item.is-collapse {
   :deep(.el-sub-menu__icon-arrow) {
     z-index: -100;
   }
 }
 
 // collapse
-#unis-menu-sub--container.is-active.is-collapse {
+.unis-sub-menu_item.is-active.is-collapse {
   :deep(.el-sub-menu__title) {
     position: relative;
     z-index: 2;
