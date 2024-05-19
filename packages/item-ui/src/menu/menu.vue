@@ -4,7 +4,7 @@
     <el-menu popper-class="unis-item_menu--popper" v-if="!moreSysOpen" id="unis-menu--container"
              class="unis-item_menu h-full" @select="select" :router="false" :default-active="defaultActive"
              :collapse="isCollapsed" @open="handleOpen" @close="handleClose" unique-opened>
-      <div :class="!isCollapsed ? 'flex justify-between' : ''">
+      <div :class="!isCollapsed ? 'flex justify-between' : ''" :default-openeds="defaultOpeneds">
         <a class="flex mb-4 items-center h-[56px]" href="/">
           <div v-if="!isCollapsed" style="margin-left: 1.5rem;">
             <slot name="main-logo"></slot>
@@ -108,7 +108,10 @@ const props = withDefaults(defineProps<{
   position: [string, number];
   applicationId: string;
   isResize: boolean;
-}>(), {collapse: false, data: [], defaultActive: '1',isResize:true});
+  uniqueOpen:boolean;
+  defaultOpeneds: string[];
+  isMore:boolean;
+}>(), {collapse: false, data: [], defaultActive: '1',isResize:true,uniqueOpen:true,defaultOpeneds:[],isMore:false});
 
 const emit = defineEmits(['selectApplication', 'more', 'sizeChange', 'collapse', 'open', 'close', 'handleMenuClick', 'handleIconClick'])
 const {moreSysOpen, applicationLoading, changeMoreSysOpen} = createMoreSystem()
@@ -262,6 +265,12 @@ watch(() => props.data, (v) => {
 let applicationList = ref([])
 watch(() => props.applications, (v) => {
   applicationList.value = v
+}, {
+  immediate: true,
+  deep: true
+})
+watch(()=>props.isMore,(v)=>{
+  changeMoreSysOpen(v)
 }, {
   immediate: true,
   deep: true
