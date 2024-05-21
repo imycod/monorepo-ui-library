@@ -3,8 +3,8 @@
   <div id="unis-menu-panel--container" :class="collapseClass">
     <el-menu popper-class="unis-item_menu--popper" v-if="!moreSysOpen" id="unis-menu--container"
              class="unis-item_menu h-full" @select="select" :router="false" :default-active="defaultActive"
-             :collapse="isCollapsed" @open="handleOpen" @close="handleClose" unique-opened>
-      <div :class="!isCollapsed ? 'flex justify-between' : ''" :default-openeds="defaultOpeneds">
+             :collapse="isCollapsed" @open="handleOpen" @close="handleClose" :default-openeds="defaultOpeneds" unique-opened>
+      <div :class="!isCollapsed ? 'flex justify-between' : ''">
         <a class="flex mb-4 items-center h-[56px]" href="/">
           <div v-if="!isCollapsed" style="margin-left: 1.5rem;">
             <slot name="main-logo"></slot>
