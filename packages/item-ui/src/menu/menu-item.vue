@@ -1,7 +1,7 @@
 <template>
   <el-sub-menu class="unis-sub-menu_item" :class="[collapse ? `is-collapse` : null, data.special ? 'special' : null]"
                :id="data.id" :expand-close-icon="Plus" :expand-open-icon="Minus" v-if="data.children"
-               :index="data.index">
+               :index="data.path">
     <template #title>
       <el-icon :size="20">
         <i class="iconfont" v-if="data._isIconFont" :class="data.icon"></i>
@@ -15,7 +15,7 @@
                  :data="child"></menu-item>
     </div>
   </el-sub-menu>
-  <el-menu-item @click="handleMenuClick(data)" :class="className" v-else :index="data.index" :id="data.id">
+  <el-menu-item @click="handleMenuClick(data)" :class="className" v-else :index="data.path" :id="data.id">
     <el-icon :size="20" v-if="className.includes('special')" @click.stop="handleIconClick(data)">
       <i v-if="data._isIconFont" :class="!data.iconActive ? data.icon : data.activeIcon"></i>
       <Icon :icon="!data.iconActive ? data.icon : data.activeIcon" v-else/>
