@@ -3,7 +3,7 @@
   <div id="unis-menu-panel--container" :class="collapseClass">
     <el-menu popper-class="unis-item_menu--popper" v-if="!moreSysOpen" id="unis-menu--container"
              class="unis-item_menu h-full" @select="select" :router="false" :default-active="defaultActive"
-             :collapse="isCollapsed" @open="handleOpen" @close="handleClose" :default-openeds="defaultOpeneds" unique-opened>
+             :collapse="isCollapsed" @open="handleOpen" @close="handleClose" :key="openedAccordion[0]" :default-openeds="openedAccordion" unique-opened>
       <div :class="!isCollapsed ? 'flex justify-between' : ''">
         <a class="flex mb-4 items-center h-[56px]" href="/">
           <div v-if="!isCollapsed" style="margin-left: 1.5rem;">
@@ -227,10 +227,10 @@ const handleIconClick = (data) => {
   emit('handleIconClick', data)
 }
 
-const onToggleAccordion = (menuTitle) => {
-  toggleAccordion(menuTitle)
-  emit('collapse', isCollapsed.value)
-}
+// const onToggleAccordion = (menuTitle) => {
+//   toggleAccordion(menuTitle)
+//   emit('collapse', isCollapsed.value)
+// }
 const onToggleSlimMode = () => {
   toggleSlimMode()
   emit('collapse', isCollapsed.value)
@@ -271,6 +271,13 @@ watch(() => props.applications, (v) => {
 })
 watch(()=>props.isMore,(v)=>{
   changeMoreSysOpen(v)
+}, {
+  immediate: true,
+  deep: true
+})
+watch(()=>props.defaultOpeneds,(v)=>{
+  console.log('defaultOpeneds------------',v);
+  openedAccordion.value = v
 }, {
   immediate: true,
   deep: true

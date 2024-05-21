@@ -2,7 +2,7 @@
 import { ref, nextTick } from "vue"
 
 export default function createMenus(props) {
-    const openedAccordion = ref('');
+    const openedAccordion = ref([]);
     const isCollapsed = ref(false);
 
 
@@ -20,7 +20,6 @@ export default function createMenus(props) {
 
     function toggleSlimMode(): void {
         isCollapsed.value = !isCollapsed.value;
-        openedAccordion.value = '';
     }
 
     return {
